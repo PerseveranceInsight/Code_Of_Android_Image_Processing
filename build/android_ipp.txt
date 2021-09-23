@@ -1,0 +1,1627 @@
+
+libs/arm64-v8a/android_ipp:	file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+00000000000062f4 <_start>:
+    62f4: 9f 24 03 d5  	hint	#36
+    62f8: 1d 00 80 d2  	mov	x29, #0
+    62fc: 1e 00 80 d2  	mov	x30, #0
+    6300: e0 03 00 91  	mov	x0, sp
+    6304: 01 00 00 14  	b	0x6308 <_start_main>
+
+0000000000006308 <_start_main>:
+    6308: 3f 23 03 d5  	hint	#25
+    630c: ff c3 00 d1  	sub	sp, sp, #48
+    6310: fd 7b 02 a9  	stp	x29, x30, [sp, #32]
+    6314: fd 83 00 91  	add	x29, sp, #32
+    6318: 08 00 00 f0  	adrp	x8, 0x9000 <_start_main+0x1c>
+    631c: 09 00 00 f0  	adrp	x9, 0x9000 <_start_main+0x20>
+    6320: 0a 00 00 f0  	adrp	x10, 0x9000 <_start_main+0x24>
+    6324: 08 ad 40 f9  	ldr	x8, [x8, #344]
+    6328: 29 b1 40 f9  	ldr	x9, [x9, #352]
+    632c: 4a b5 40 f9  	ldr	x10, [x10, #360]
+    6330: 02 00 00 f0  	adrp	x2, 0x9000 <_start_main+0x34>
+    6334: e3 23 00 91  	add	x3, sp, #8
+    6338: e8 a7 00 a9  	stp	x8, x9, [sp, #8]
+    633c: ea 0f 00 f9  	str	x10, [sp, #24]
+    6340: 42 b8 40 f9  	ldr	x2, [x2, #368]
+    6344: e1 03 1f aa  	mov	x1, xzr
+    6348: e2 04 00 94  	bl	0x76d0 <__libc_init@plt>
+
+000000000000634c <__atexit_handler_wrapper>:
+    634c: 5f 24 03 d5  	hint	#34
+    6350: 60 00 00 b4  	cbz	x0, 0x635c <__atexit_handler_wrapper+0x10>
+    6354: f0 03 00 aa  	mov	x16, x0
+    6358: 00 02 1f d6  	br	x16
+    635c: c0 03 5f d6  	ret
+
+0000000000006360 <atexit>:
+    6360: 5f 24 03 d5  	hint	#34
+    6364: 08 00 00 90  	adrp	x8, 0x6000 <atexit+0x4>
+    6368: 08 31 0d 91  	add	x8, x8, #844
+    636c: 22 00 00 b0  	adrp	x2, 0xb000 <main>
+    6370: 42 c0 35 91  	add	x2, x2, #3440
+    6374: e1 03 00 aa  	mov	x1, x0
+    6378: e0 03 08 aa  	mov	x0, x8
+    637c: d9 04 00 14  	b	0x76e0 <__cxa_atexit@plt>
+
+0000000000006380 <main>:
+; {
+    6380: ff 03 01 d1  	sub	sp, sp, #64
+    6384: fd 7b 03 a9  	stp	x29, x30, [sp, #48]
+    6388: fd c3 00 91  	add	x29, sp, #48
+    638c: bf c3 1f b8  	stur	wzr, [x29, #-4]
+    6390: a0 83 1f b8  	stur	w0, [x29, #-8]
+    6394: a1 03 1f f8  	stur	x1, [x29, #-16]
+    6398: 60 00 80 52  	mov	w0, #3
+    639c: e1 ff ff b0  	adrp	x1, 0x3000 <main+0x10>
+    63a0: 21 80 39 91  	add	x1, x1, #3680
+    63a4: e2 ff ff b0  	adrp	x2, 0x3000 <main+0x18>
+    63a8: 42 80 3a 91  	add	x2, x2, #3744
+    63ac: e2 0f 00 f9  	str	x2, [sp, #24]
+    63b0: e3 ff ff b0  	adrp	x3, 0x3000 <main+0x24>
+    63b4: 63 80 3b 91  	add	x3, x3, #3808
+    63b8: e3 0b 00 f9  	str	x3, [sp, #16]
+;     FUNC_ENTRANCE_LOG;
+    63bc: cd 04 00 94  	bl	0x76f0 <__android_log_print@plt>
+    63c0: e1 0b 40 f9  	ldr	x1, [sp, #16]
+    63c4: e0 0f 40 f9  	ldr	x0, [sp, #24]
+    63c8: ce 04 00 94  	bl	0x7700 <printf@plt>
+    63cc: e0 ff ff b0  	adrp	x0, 0x3000 <main+0x40>
+    63d0: 00 80 3c 91  	add	x0, x0, #3872
+;     FUNC_ENTRANCE_LOG;
+    63d4: cb 04 00 94  	bl	0x7700 <printf@plt>
+;     im2row_cpu_runtime();
+    63d8: 2b 00 00 94  	bl	0x6484 <im2row_cpu_runtime>
+    63dc: 60 00 80 52  	mov	w0, #3
+    63e0: e1 ff ff b0  	adrp	x1, 0x3000 <main+0x54>
+    63e4: 21 80 39 91  	add	x1, x1, #3680
+    63e8: e2 ff ff b0  	adrp	x2, 0x3000 <main+0x5c>
+    63ec: 42 80 3d 91  	add	x2, x2, #3936
+    63f0: e2 07 00 f9  	str	x2, [sp, #8]
+    63f4: e3 ff ff b0  	adrp	x3, 0x3000 <main+0x68>
+    63f8: 63 80 3b 91  	add	x3, x3, #3808
+    63fc: e3 03 00 f9  	str	x3, [sp]
+;     FUNC_EXIT_LOG;
+    6400: bc 04 00 94  	bl	0x76f0 <__android_log_print@plt>
+    6404: e1 03 40 f9  	ldr	x1, [sp]
+    6408: e0 07 40 f9  	ldr	x0, [sp, #8]
+    640c: bd 04 00 94  	bl	0x7700 <printf@plt>
+    6410: e0 ff ff b0  	adrp	x0, 0x3000 <main+0x84>
+    6414: 00 80 3c 91  	add	x0, x0, #3872
+;     FUNC_EXIT_LOG;
+    6418: ba 04 00 94  	bl	0x7700 <printf@plt>
+    641c: e0 03 1f 2a  	mov	w0, wzr
+;     return 0;
+    6420: fd 7b 43 a9  	ldp	x29, x30, [sp, #48]
+    6424: ff 03 01 91  	add	sp, sp, #64
+    6428: c0 03 5f d6  	ret
+
+000000000000642c <asan.module_ctor>:
+    642c: ff 83 00 d1  	sub	sp, sp, #32
+    6430: fe 0b 00 f9  	str	x30, [sp, #16]
+    6434: 28 00 00 90  	adrp	x8, 0xa000 <asan.module_ctor+0x18>
+    6438: 08 c1 08 91  	add	x8, x8, #560
+    643c: e8 07 00 f9  	str	x8, [sp, #8]
+    6440: b4 04 00 94  	bl	0x7710 <__asan_init@plt>
+    6444: b7 04 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    6448: e0 07 40 f9  	ldr	x0, [sp, #8]
+    644c: a8 00 80 52  	mov	w8, #5
+    6450: e1 03 08 2a  	mov	w1, w8
+    6454: b7 04 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    6458: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    645c: ff 83 00 91  	add	sp, sp, #32
+    6460: c0 03 5f d6  	ret
+
+0000000000006464 <asan.module_dtor>:
+    6464: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    6468: 20 00 00 90  	adrp	x0, 0xa000 <asan.module_dtor+0x14>
+    646c: 00 c0 08 91  	add	x0, x0, #560
+    6470: a8 00 80 52  	mov	w8, #5
+    6474: e1 03 08 2a  	mov	w1, w8
+    6478: b2 04 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    647c: fe 07 41 f8  	ldr	x30, [sp], #16
+    6480: c0 03 5f d6  	ret
+
+0000000000006484 <im2row_cpu_runtime>:
+; {
+    6484: fd 7b be a9  	stp	x29, x30, [sp, #-32]!
+    6488: fc 4f 01 a9  	stp	x28, x19, [sp, #16]
+    648c: fd 03 00 91  	mov	x29, sp
+    6490: e9 03 06 d1  	sub	x9, sp, #384
+    6494: 3f e9 7b 92  	and	sp, x9, #0xffffffffffffffe0
+    6498: f3 03 00 91  	mov	x19, sp
+    649c: 48 d0 3b d5  	mrs	x8, TPIDR_EL0
+    64a0: 08 15 40 f9  	ldr	x8, [x8, #40]
+    64a4: 68 be 00 f9  	str	x8, [x19, #376]
+    64a8: 08 00 00 f0  	adrp	x8, 0x9000 <im2row_cpu_runtime+0x30>
+    64ac: 08 bd 40 f9  	ldr	x8, [x8, #376]
+    64b0: 08 01 40 b9  	ldr	w8, [x8]
+    64b4: e9 03 1f aa  	mov	x9, xzr
+    64b8: 69 92 00 f9  	str	x9, [x19, #288]
+    64bc: e8 00 00 34  	cbz	w8, 0x64d8 <im2row_cpu_runtime+0x54>
+    64c0: 01 00 00 14  	b	0x64c4 <im2row_cpu_runtime+0x40>
+    64c4: 08 0c 80 52  	mov	w8, #96
+    64c8: e0 03 08 2a  	mov	w0, w8
+    64cc: a1 04 00 94  	bl	0x7750 <__asan_stack_malloc_1@plt>
+    64d0: 60 92 00 f9  	str	x0, [x19, #288]
+    64d4: 01 00 00 14  	b	0x64d8 <im2row_cpu_runtime+0x54>
+    64d8: 68 92 40 f9  	ldr	x8, [x19, #288]
+    64dc: 68 8a 00 f9  	str	x8, [x19, #272]
+    64e0: e9 03 08 aa  	mov	x9, x8
+    64e4: 69 8e 00 f9  	str	x9, [x19, #280]
+    64e8: 08 01 00 b5  	cbnz	x8, 0x6508 <im2row_cpu_runtime+0x84>
+    64ec: 01 00 00 14  	b	0x64f0 <im2row_cpu_runtime+0x6c>
+    64f0: e8 03 00 91  	mov	x8, sp
+    64f4: 08 81 01 f1  	subs	x8, x8, #96
+    64f8: 08 e9 7b 92  	and	x8, x8, #0xffffffffffffffe0
+    64fc: 1f 01 00 91  	mov	sp, x8
+    6500: 68 8e 00 f9  	str	x8, [x19, #280]
+    6504: 01 00 00 14  	b	0x6508 <im2row_cpu_runtime+0x84>
+    6508: 69 8e 40 f9  	ldr	x9, [x19, #280]
+    650c: 69 5e 00 f9  	str	x9, [x19, #184]
+    6510: 69 96 00 f9  	str	x9, [x19, #296]
+    6514: 28 81 00 91  	add	x8, x9, #32
+    6518: 68 7e 00 f9  	str	x8, [x19, #248]
+    651c: 68 62 00 f9  	str	x8, [x19, #192]
+    6520: 28 01 01 91  	add	x8, x9, #64
+    6524: 68 66 00 f9  	str	x8, [x19, #200]
+    6528: e8 03 09 aa  	mov	x8, x9
+    652c: 68 6a 00 f9  	str	x8, [x19, #208]
+    6530: 68 56 91 52  	mov	w8, #35507
+    6534: a8 36 a8 72  	movk	w8, #16821, lsl #16
+    6538: 28 01 00 f9  	str	x8, [x9]
+    653c: e8 ff ff d0  	adrp	x8, 0x4000 <im2row_cpu_runtime+0xb0>
+    6540: 08 d9 01 91  	add	x8, x8, #118
+    6544: 28 05 00 f9  	str	x8, [x9, #8]
+    6548: 08 00 00 f0  	adrp	x8, 0x9000 <im2row_cpu_runtime+0xd0>
+    654c: 08 c1 40 f9  	ldr	x8, [x8, #384]
+    6550: 28 09 00 f9  	str	x8, [x9, #16]
+    6554: 08 02 c0 d2  	mov	x8, #68719476736
+    6558: 68 82 00 f9  	str	x8, [x19, #256]
+    655c: 09 0d 49 8b  	add	x9, x8, x9, lsr #3
+    6560: 69 7a 00 f9  	str	x9, [x19, #240]
+    6564: e8 03 09 aa  	mov	x8, x9
+    6568: 68 6e 00 f9  	str	x8, [x19, #216]
+    656c: e8 d3 04 b2  	mov	x8, #-1012762419733073423
+    6570: 08 5f de f2  	movk	x8, #62200, lsl #32
+    6574: 48 5e fe f2  	movk	x8, #62194, lsl #48
+    6578: 28 01 00 f9  	str	x8, [x9]
+    657c: 08 7f 9e 52  	mov	w8, #62456
+    6580: 68 7e be 72  	movk	w8, #62451, lsl #16
+    6584: 28 09 00 b9  	str	w8, [x9, #8]
+;     FUNC_ENTRANCE_LOG;
+    6588: e1 ff ff d0  	adrp	x1, 0x4000 <im2row_cpu_runtime+0xfc>
+    658c: 21 00 05 91  	add	x1, x1, #320
+    6590: e2 ff ff d0  	adrp	x2, 0x4000 <im2row_cpu_runtime+0x104>
+    6594: 42 00 06 91  	add	x2, x2, #384
+    6598: 62 76 00 f9  	str	x2, [x19, #232]
+    659c: e3 ff ff d0  	adrp	x3, 0x4000 <im2row_cpu_runtime+0x110>
+    65a0: 63 00 2e 91  	add	x3, x3, #2944
+    65a4: 63 72 00 f9  	str	x3, [x19, #224]
+    65a8: 60 00 80 52  	mov	w0, #3
+    65ac: 51 04 00 94  	bl	0x76f0 <__android_log_print@plt>
+    65b0: 61 72 40 f9  	ldr	x1, [x19, #224]
+    65b4: 60 76 40 f9  	ldr	x0, [x19, #232]
+    65b8: 52 04 00 94  	bl	0x7700 <printf@plt>
+    65bc: e0 ff ff d0  	adrp	x0, 0x4000 <im2row_cpu_runtime+0x130>
+    65c0: 00 00 08 91  	add	x0, x0, #512
+    65c4: 4f 04 00 94  	bl	0x7700 <printf@plt>
+    65c8: 6b 7a 40 f9  	ldr	x11, [x19, #240]
+    65cc: 68 7e 40 f9  	ldr	x8, [x19, #248]
+    65d0: 69 82 40 f9  	ldr	x9, [x19, #256]
+    65d4: ea 03 1f aa  	mov	x10, xzr
+;     uint8_t *p_input_img = NULL;
+    65d8: 6a ae 00 f9  	str	x10, [x19, #344]
+    65dc: ea 03 1f 2a  	mov	w10, wzr
+;     uint8_t *p_output_row = NULL;
+    65e0: 6a 11 00 39  	strb	w10, [x11, #4]
+    65e4: e0 03 08 aa  	mov	x0, x8
+    65e8: 60 86 00 f9  	str	x0, [x19, #264]
+    65ec: 08 fd 43 d3  	lsr	x8, x8, #3
+    65f0: 08 69 69 38  	ldrb	w8, [x8, x9]
+    65f4: 88 00 00 34  	cbz	w8, 0x6604 <im2row_cpu_runtime+0x180>
+    65f8: 01 00 00 14  	b	0x65fc <im2row_cpu_runtime+0x178>
+    65fc: 60 86 40 f9  	ldr	x0, [x19, #264]
+;     uint8_t *p_output_row = NULL;
+    6600: 58 04 00 94  	bl	0x7760 <__asan_report_store8@plt>
+    6604: 68 66 40 f9  	ldr	x8, [x19, #200]
+    6608: 6a 6e 40 f9  	ldr	x10, [x19, #216]
+    660c: 6b 62 40 f9  	ldr	x11, [x19, #192]
+    6610: e9 03 1f aa  	mov	x9, xzr
+;     uint8_t *p_output_row = NULL;
+    6614: 69 01 00 f9  	str	x9, [x11]
+    6618: e9 03 1f 2a  	mov	w9, wzr
+;     uint8_t *p_output_img = NULL;
+    661c: 49 21 00 39  	strb	w9, [x10, #8]
+    6620: e0 03 08 aa  	mov	x0, x8
+    6624: 60 5a 00 f9  	str	x0, [x19, #176]
+    6628: 08 fd 43 d3  	lsr	x8, x8, #3
+    662c: 09 02 c0 d2  	mov	x9, #68719476736
+    6630: 08 69 69 38  	ldrb	w8, [x8, x9]
+    6634: 88 00 00 34  	cbz	w8, 0x6644 <im2row_cpu_runtime+0x1c0>
+    6638: 01 00 00 14  	b	0x663c <im2row_cpu_runtime+0x1b8>
+    663c: 60 5a 40 f9  	ldr	x0, [x19, #176]
+;     uint8_t *p_output_img = NULL;
+    6640: 48 04 00 94  	bl	0x7760 <__asan_report_store8@plt>
+    6644: 69 66 40 f9  	ldr	x9, [x19, #200]
+    6648: e8 03 1f aa  	mov	x8, xzr
+;     uint8_t *p_output_img = NULL;
+    664c: 28 01 00 f9  	str	x8, [x9]
+    6650: 68 00 80 52  	mov	w8, #3
+;     unsigned int input_highs = 3, input_widths = 3, input_channels = 1;
+    6654: 68 56 01 b9  	str	w8, [x19, #340]
+    6658: 68 52 01 b9  	str	w8, [x19, #336]
+    665c: 28 00 80 52  	mov	w8, #1
+    6660: 68 4e 01 b9  	str	w8, [x19, #332]
+;     unsigned int input_elem_num = input_highs * input_widths * input_channels;
+    6664: 69 56 41 b9  	ldr	w9, [x19, #340]
+    6668: 6a 52 41 b9  	ldr	w10, [x19, #336]
+    666c: 29 7d 0a 1b  	mul	w9, w9, w10
+    6670: 6a 4e 41 b9  	ldr	w10, [x19, #332]
+    6674: 29 7d 0a 1b  	mul	w9, w9, w10
+    6678: 69 4a 01 b9  	str	w9, [x19, #328]
+    667c: 49 00 80 52  	mov	w9, #2
+;     unsigned int kernel_size = 2;
+    6680: 69 46 01 b9  	str	w9, [x19, #324]
+;     unsigned int stride = 1, padding = 1;
+    6684: 68 42 01 b9  	str	w8, [x19, #320]
+    6688: 68 3e 01 b9  	str	w8, [x19, #316]
+;     p_input_img = ree_malloc(sizeof(uint8_t)*input_elem_num);
+    668c: 68 4a 41 b9  	ldr	w8, [x19, #328]
+    6690: e0 03 08 2a  	mov	w0, w8
+    6694: 37 04 00 94  	bl	0x7770 <malloc@plt>
+    6698: 60 ae 00 f9  	str	x0, [x19, #344]
+;     if (!p_input_img)
+    669c: 68 ae 40 f9  	ldr	x8, [x19, #344]
+    66a0: 68 02 00 b5  	cbnz	x8, 0x66ec <im2row_cpu_runtime+0x268>
+    66a4: 01 00 00 14  	b	0x66a8 <im2row_cpu_runtime+0x224>
+;         ree_log(LOG_ERROR, "%s allocates p_input_img failed", __func__);
+    66a8: e1 ff ff d0  	adrp	x1, 0x4000 <im2row_cpu_runtime+0x21c>
+    66ac: 21 00 05 91  	add	x1, x1, #320
+    66b0: e2 ff ff d0  	adrp	x2, 0x4000 <im2row_cpu_runtime+0x224>
+    66b4: 42 00 2f 91  	add	x2, x2, #3008
+    66b8: 62 56 00 f9  	str	x2, [x19, #168]
+    66bc: e3 ff ff d0  	adrp	x3, 0x4000 <im2row_cpu_runtime+0x230>
+    66c0: 63 00 2e 91  	add	x3, x3, #2944
+    66c4: 63 52 00 f9  	str	x3, [x19, #160]
+    66c8: c0 00 80 52  	mov	w0, #6
+    66cc: 09 04 00 94  	bl	0x76f0 <__android_log_print@plt>
+    66d0: 61 52 40 f9  	ldr	x1, [x19, #160]
+    66d4: 60 56 40 f9  	ldr	x0, [x19, #168]
+    66d8: 0a 04 00 94  	bl	0x7700 <printf@plt>
+    66dc: e0 ff ff d0  	adrp	x0, 0x4000 <im2row_cpu_runtime+0x250>
+    66e0: 00 00 08 91  	add	x0, x0, #512
+    66e4: 07 04 00 94  	bl	0x7700 <printf@plt>
+;         goto EXIT_IM2ROW_CPU_RUNTIME;
+    66e8: 8d 00 00 14  	b	0x691c <im2row_cpu_runtime+0x498>
+    66ec: e8 03 1f 2a  	mov	w8, wzr
+;     for (int i = 0; i<input_elem_num; i++)
+    66f0: 68 3a 01 b9  	str	w8, [x19, #312]
+    66f4: 01 00 00 14  	b	0x66f8 <im2row_cpu_runtime+0x274>
+    66f8: 68 3a 41 b9  	ldr	w8, [x19, #312]
+    66fc: 69 4a 41 b9  	ldr	w9, [x19, #328]
+    6700: 08 01 09 6b  	subs	w8, w8, w9
+    6704: 63 00 00 54  	b.lo	0x6710 <im2row_cpu_runtime+0x28c>
+    6708: 01 00 00 14  	b	0x670c <im2row_cpu_runtime+0x288>
+    670c: 22 00 00 14  	b	0x6794 <im2row_cpu_runtime+0x310>
+;         p_input_img[i] = i;
+    6710: 69 3a 81 b9  	ldrsw	x9, [x19, #312]
+    6714: e8 03 09 2a  	mov	w8, w9
+    6718: 68 86 00 b9  	str	w8, [x19, #132]
+    671c: 68 ae 40 f9  	ldr	x8, [x19, #344]
+    6720: 08 01 09 8b  	add	x8, x8, x9
+    6724: e9 03 08 aa  	mov	x9, x8
+    6728: 69 46 00 f9  	str	x9, [x19, #136]
+    672c: e0 03 08 aa  	mov	x0, x8
+    6730: 60 4a 00 f9  	str	x0, [x19, #144]
+    6734: 08 fd 43 d3  	lsr	x8, x8, #3
+    6738: 09 02 c0 d2  	mov	x9, #68719476736
+    673c: 08 69 e9 38  	ldrsb	w8, [x8, x9]
+    6740: e9 03 08 2a  	mov	w9, w8
+    6744: 69 9e 00 b9  	str	w9, [x19, #156]
+    6748: 68 01 00 34  	cbz	w8, 0x6774 <im2row_cpu_runtime+0x2f0>
+    674c: 01 00 00 14  	b	0x6750 <im2row_cpu_runtime+0x2cc>
+    6750: 69 9e 40 b9  	ldr	w9, [x19, #156]
+    6754: 60 4a 40 f9  	ldr	x0, [x19, #144]
+;         p_input_img[i] = i;
+    6758: e8 03 00 2a  	mov	w8, w0
+    675c: 08 09 00 12  	and	w8, w8, #0x7
+    6760: 08 81 29 6b  	subs	w8, w8, w9, sxtb
+    6764: 8b 00 00 54  	b.lt	0x6774 <im2row_cpu_runtime+0x2f0>
+    6768: 01 00 00 14  	b	0x676c <im2row_cpu_runtime+0x2e8>
+    676c: 60 4a 40 f9  	ldr	x0, [x19, #144]
+;         p_input_img[i] = i;
+    6770: 04 04 00 94  	bl	0x7780 <__asan_report_store1@plt>
+    6774: 68 86 40 b9  	ldr	w8, [x19, #132]
+    6778: 69 46 40 f9  	ldr	x9, [x19, #136]
+;         p_input_img[i] = i;
+    677c: 28 01 00 39  	strb	w8, [x9]
+    6780: 01 00 00 14  	b	0x6784 <im2row_cpu_runtime+0x300>
+;     for (int i = 0; i<input_elem_num; i++)
+    6784: 68 3a 41 b9  	ldr	w8, [x19, #312]
+    6788: 08 05 00 11  	add	w8, w8, #1
+    678c: 68 3a 01 b9  	str	w8, [x19, #312]
+    6790: da ff ff 17  	b	0x66f8 <im2row_cpu_runtime+0x274>
+    6794: 67 62 40 f9  	ldr	x7, [x19, #192]
+;     im2row_cpu_c(p_input_img,
+    6798: 60 ae 40 f9  	ldr	x0, [x19, #344]
+;                  input_highs, input_widths, input_channels,
+    679c: 61 56 41 b9  	ldr	w1, [x19, #340]
+    67a0: 62 52 41 b9  	ldr	w2, [x19, #336]
+    67a4: 63 4e 41 b9  	ldr	w3, [x19, #332]
+;                  kernel_size, stride, padding,
+    67a8: 64 46 41 b9  	ldr	w4, [x19, #324]
+    67ac: 65 42 41 b9  	ldr	w5, [x19, #320]
+    67b0: 66 3e 41 b9  	ldr	w6, [x19, #316]
+;     im2row_cpu_c(p_input_img,
+    67b4: 44 01 00 94  	bl	0x6cc4 <im2row_cpu_c>
+    67b8: 68 62 40 f9  	ldr	x8, [x19, #192]
+;     row2im_cpu_c(p_output_row,
+    67bc: e0 03 08 aa  	mov	x0, x8
+    67c0: 60 3e 00 f9  	str	x0, [x19, #120]
+    67c4: 08 fd 43 d3  	lsr	x8, x8, #3
+    67c8: 09 02 c0 d2  	mov	x9, #68719476736
+    67cc: 08 69 69 38  	ldrb	w8, [x8, x9]
+    67d0: 88 00 00 34  	cbz	w8, 0x67e0 <im2row_cpu_runtime+0x35c>
+    67d4: 01 00 00 14  	b	0x67d8 <im2row_cpu_runtime+0x354>
+    67d8: 60 3e 40 f9  	ldr	x0, [x19, #120]
+;     row2im_cpu_c(p_output_row,
+    67dc: ed 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    67e0: 67 66 40 f9  	ldr	x7, [x19, #200]
+    67e4: 68 62 40 f9  	ldr	x8, [x19, #192]
+;     row2im_cpu_c(p_output_row,
+    67e8: 00 01 40 f9  	ldr	x0, [x8]
+;                  input_highs, input_widths, input_channels,
+    67ec: 61 56 41 b9  	ldr	w1, [x19, #340]
+    67f0: 62 52 41 b9  	ldr	w2, [x19, #336]
+    67f4: 63 4e 41 b9  	ldr	w3, [x19, #332]
+;                  kernel_size, stride, padding,
+    67f8: 64 46 41 b9  	ldr	w4, [x19, #324]
+    67fc: 65 42 41 b9  	ldr	w5, [x19, #320]
+    6800: 66 3e 41 b9  	ldr	w6, [x19, #316]
+;     row2im_cpu_c(p_output_row,
+    6804: 4a 02 00 94  	bl	0x712c <row2im_cpu_c>
+    6808: 68 66 40 f9  	ldr	x8, [x19, #200]
+;     if (p_output_img)
+    680c: e0 03 08 aa  	mov	x0, x8
+    6810: 60 3a 00 f9  	str	x0, [x19, #112]
+    6814: 08 fd 43 d3  	lsr	x8, x8, #3
+    6818: 09 02 c0 d2  	mov	x9, #68719476736
+    681c: 08 69 69 38  	ldrb	w8, [x8, x9]
+    6820: 88 00 00 34  	cbz	w8, 0x6830 <im2row_cpu_runtime+0x3ac>
+    6824: 01 00 00 14  	b	0x6828 <im2row_cpu_runtime+0x3a4>
+    6828: 60 3a 40 f9  	ldr	x0, [x19, #112]
+;     if (p_output_img)
+    682c: d9 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    6830: 68 66 40 f9  	ldr	x8, [x19, #200]
+;     if (p_output_img)
+    6834: 08 01 40 f9  	ldr	x8, [x8]
+    6838: 08 07 00 b4  	cbz	x8, 0x6918 <im2row_cpu_runtime+0x494>
+    683c: 01 00 00 14  	b	0x6840 <im2row_cpu_runtime+0x3bc>
+    6840: e8 03 1f 2a  	mov	w8, wzr
+;         for (int i = 0; i<input_elem_num; i++)
+    6844: 68 36 01 b9  	str	w8, [x19, #308]
+    6848: 01 00 00 14  	b	0x684c <im2row_cpu_runtime+0x3c8>
+    684c: 68 36 41 b9  	ldr	w8, [x19, #308]
+    6850: 69 4a 41 b9  	ldr	w9, [x19, #328]
+    6854: 08 01 09 6b  	subs	w8, w8, w9
+    6858: 63 00 00 54  	b.lo	0x6864 <im2row_cpu_runtime+0x3e0>
+    685c: 01 00 00 14  	b	0x6860 <im2row_cpu_runtime+0x3dc>
+    6860: 2d 00 00 14  	b	0x6914 <im2row_cpu_runtime+0x490>
+    6864: 68 66 40 f9  	ldr	x8, [x19, #200]
+;             printf("%d ", p_output_img[i]);
+    6868: e0 03 08 aa  	mov	x0, x8
+    686c: 60 36 00 f9  	str	x0, [x19, #104]
+    6870: 08 fd 43 d3  	lsr	x8, x8, #3
+    6874: 09 02 c0 d2  	mov	x9, #68719476736
+    6878: 08 69 69 38  	ldrb	w8, [x8, x9]
+    687c: 88 00 00 34  	cbz	w8, 0x688c <im2row_cpu_runtime+0x408>
+    6880: 01 00 00 14  	b	0x6884 <im2row_cpu_runtime+0x400>
+    6884: 60 36 40 f9  	ldr	x0, [x19, #104]
+;             printf("%d ", p_output_img[i]);
+    6888: c2 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    688c: 68 66 40 f9  	ldr	x8, [x19, #200]
+;             printf("%d ", p_output_img[i]);
+    6890: 08 01 40 f9  	ldr	x8, [x8]
+    6894: 69 36 81 b9  	ldrsw	x9, [x19, #308]
+    6898: 08 01 09 8b  	add	x8, x8, x9
+    689c: e9 03 08 aa  	mov	x9, x8
+    68a0: 69 2a 00 f9  	str	x9, [x19, #80]
+    68a4: e0 03 08 aa  	mov	x0, x8
+    68a8: 60 2e 00 f9  	str	x0, [x19, #88]
+    68ac: 08 fd 43 d3  	lsr	x8, x8, #3
+    68b0: 09 02 c0 d2  	mov	x9, #68719476736
+    68b4: 08 69 e9 38  	ldrsb	w8, [x8, x9]
+    68b8: e9 03 08 2a  	mov	w9, w8
+    68bc: 69 66 00 b9  	str	w9, [x19, #100]
+    68c0: 68 01 00 34  	cbz	w8, 0x68ec <im2row_cpu_runtime+0x468>
+    68c4: 01 00 00 14  	b	0x68c8 <im2row_cpu_runtime+0x444>
+    68c8: 69 66 40 b9  	ldr	w9, [x19, #100]
+    68cc: 60 2e 40 f9  	ldr	x0, [x19, #88]
+;             printf("%d ", p_output_img[i]);
+    68d0: e8 03 00 2a  	mov	w8, w0
+    68d4: 08 09 00 12  	and	w8, w8, #0x7
+    68d8: 08 81 29 6b  	subs	w8, w8, w9, sxtb
+    68dc: 8b 00 00 54  	b.lt	0x68ec <im2row_cpu_runtime+0x468>
+    68e0: 01 00 00 14  	b	0x68e4 <im2row_cpu_runtime+0x460>
+    68e4: 60 2e 40 f9  	ldr	x0, [x19, #88]
+;             printf("%d ", p_output_img[i]);
+    68e8: ae 03 00 94  	bl	0x77a0 <__asan_report_load1@plt>
+    68ec: 68 2a 40 f9  	ldr	x8, [x19, #80]
+;             printf("%d ", p_output_img[i]);
+    68f0: 01 01 40 39  	ldrb	w1, [x8]
+    68f4: e0 ff ff d0  	adrp	x0, 0x4000 <im2row_cpu_runtime+0x468>
+    68f8: 00 00 2d 91  	add	x0, x0, #2880
+    68fc: 81 03 00 94  	bl	0x7700 <printf@plt>
+;         }
+    6900: 01 00 00 14  	b	0x6904 <im2row_cpu_runtime+0x480>
+;         for (int i = 0; i<input_elem_num; i++)
+    6904: 68 36 41 b9  	ldr	w8, [x19, #308]
+    6908: 08 05 00 11  	add	w8, w8, #1
+    690c: 68 36 01 b9  	str	w8, [x19, #308]
+    6910: cf ff ff 17  	b	0x684c <im2row_cpu_runtime+0x3c8>
+;     }
+    6914: 01 00 00 14  	b	0x6918 <im2row_cpu_runtime+0x494>
+;     if (p_output_img)
+    6918: 01 00 00 14  	b	0x691c <im2row_cpu_runtime+0x498>
+;     ree_free(p_input_img);
+    691c: 68 ae 40 f9  	ldr	x8, [x19, #344]
+    6920: e8 00 00 b4  	cbz	x8, 0x693c <im2row_cpu_runtime+0x4b8>
+    6924: 01 00 00 14  	b	0x6928 <im2row_cpu_runtime+0x4a4>
+    6928: 60 ae 40 f9  	ldr	x0, [x19, #344]
+    692c: a1 03 00 94  	bl	0x77b0 <free@plt>
+    6930: e8 03 1f aa  	mov	x8, xzr
+    6934: 68 ae 00 f9  	str	x8, [x19, #344]
+    6938: 01 00 00 14  	b	0x693c <im2row_cpu_runtime+0x4b8>
+    693c: 68 62 40 f9  	ldr	x8, [x19, #192]
+;     ree_free(p_output_row);
+    6940: e0 03 08 aa  	mov	x0, x8
+    6944: 60 26 00 f9  	str	x0, [x19, #72]
+    6948: 08 fd 43 d3  	lsr	x8, x8, #3
+    694c: 09 02 c0 d2  	mov	x9, #68719476736
+    6950: 08 69 69 38  	ldrb	w8, [x8, x9]
+    6954: 88 00 00 34  	cbz	w8, 0x6964 <im2row_cpu_runtime+0x4e0>
+    6958: 01 00 00 14  	b	0x695c <im2row_cpu_runtime+0x4d8>
+    695c: 60 26 40 f9  	ldr	x0, [x19, #72]
+;     ree_free(p_output_row);
+    6960: 8c 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    6964: 68 62 40 f9  	ldr	x8, [x19, #192]
+;     ree_free(p_output_row);
+    6968: 08 01 40 f9  	ldr	x8, [x8]
+    696c: a8 03 00 b4  	cbz	x8, 0x69e0 <im2row_cpu_runtime+0x55c>
+    6970: 01 00 00 14  	b	0x6974 <im2row_cpu_runtime+0x4f0>
+    6974: 68 62 40 f9  	ldr	x8, [x19, #192]
+;     ree_free(p_output_row);
+    6978: e0 03 08 aa  	mov	x0, x8
+    697c: 60 22 00 f9  	str	x0, [x19, #64]
+    6980: 08 fd 43 d3  	lsr	x8, x8, #3
+    6984: 09 02 c0 d2  	mov	x9, #68719476736
+    6988: 08 69 69 38  	ldrb	w8, [x8, x9]
+    698c: 88 00 00 34  	cbz	w8, 0x699c <im2row_cpu_runtime+0x518>
+    6990: 01 00 00 14  	b	0x6994 <im2row_cpu_runtime+0x510>
+    6994: 60 22 40 f9  	ldr	x0, [x19, #64]
+;     ree_free(p_output_row);
+    6998: 7e 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    699c: 68 62 40 f9  	ldr	x8, [x19, #192]
+;     ree_free(p_output_row);
+    69a0: 00 01 40 f9  	ldr	x0, [x8]
+    69a4: 83 03 00 94  	bl	0x77b0 <free@plt>
+    69a8: 68 62 40 f9  	ldr	x8, [x19, #192]
+    69ac: e0 03 08 aa  	mov	x0, x8
+    69b0: 60 1e 00 f9  	str	x0, [x19, #56]
+    69b4: 08 fd 43 d3  	lsr	x8, x8, #3
+    69b8: 09 02 c0 d2  	mov	x9, #68719476736
+    69bc: 08 69 69 38  	ldrb	w8, [x8, x9]
+    69c0: 88 00 00 34  	cbz	w8, 0x69d0 <im2row_cpu_runtime+0x54c>
+    69c4: 01 00 00 14  	b	0x69c8 <im2row_cpu_runtime+0x544>
+    69c8: 60 1e 40 f9  	ldr	x0, [x19, #56]
+;     ree_free(p_output_row);
+    69cc: 65 03 00 94  	bl	0x7760 <__asan_report_store8@plt>
+    69d0: 69 62 40 f9  	ldr	x9, [x19, #192]
+    69d4: e8 03 1f aa  	mov	x8, xzr
+;     ree_free(p_output_row);
+    69d8: 28 01 00 f9  	str	x8, [x9]
+    69dc: 01 00 00 14  	b	0x69e0 <im2row_cpu_runtime+0x55c>
+    69e0: 68 66 40 f9  	ldr	x8, [x19, #200]
+;     ree_free(p_output_img);
+    69e4: e0 03 08 aa  	mov	x0, x8
+    69e8: 60 1a 00 f9  	str	x0, [x19, #48]
+    69ec: 08 fd 43 d3  	lsr	x8, x8, #3
+    69f0: 09 02 c0 d2  	mov	x9, #68719476736
+    69f4: 08 69 69 38  	ldrb	w8, [x8, x9]
+    69f8: 88 00 00 34  	cbz	w8, 0x6a08 <im2row_cpu_runtime+0x584>
+    69fc: 01 00 00 14  	b	0x6a00 <im2row_cpu_runtime+0x57c>
+    6a00: 60 1a 40 f9  	ldr	x0, [x19, #48]
+;     ree_free(p_output_img);
+    6a04: 63 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    6a08: 68 66 40 f9  	ldr	x8, [x19, #200]
+;     ree_free(p_output_img);
+    6a0c: 08 01 40 f9  	ldr	x8, [x8]
+    6a10: a8 03 00 b4  	cbz	x8, 0x6a84 <im2row_cpu_runtime+0x600>
+    6a14: 01 00 00 14  	b	0x6a18 <im2row_cpu_runtime+0x594>
+    6a18: 68 66 40 f9  	ldr	x8, [x19, #200]
+;     ree_free(p_output_img);
+    6a1c: e0 03 08 aa  	mov	x0, x8
+    6a20: 60 16 00 f9  	str	x0, [x19, #40]
+    6a24: 08 fd 43 d3  	lsr	x8, x8, #3
+    6a28: 09 02 c0 d2  	mov	x9, #68719476736
+    6a2c: 08 69 69 38  	ldrb	w8, [x8, x9]
+    6a30: 88 00 00 34  	cbz	w8, 0x6a40 <im2row_cpu_runtime+0x5bc>
+    6a34: 01 00 00 14  	b	0x6a38 <im2row_cpu_runtime+0x5b4>
+    6a38: 60 16 40 f9  	ldr	x0, [x19, #40]
+;     ree_free(p_output_img);
+    6a3c: 55 03 00 94  	bl	0x7790 <__asan_report_load8@plt>
+    6a40: 68 66 40 f9  	ldr	x8, [x19, #200]
+;     ree_free(p_output_img);
+    6a44: 00 01 40 f9  	ldr	x0, [x8]
+    6a48: 5a 03 00 94  	bl	0x77b0 <free@plt>
+    6a4c: 68 66 40 f9  	ldr	x8, [x19, #200]
+    6a50: e0 03 08 aa  	mov	x0, x8
+    6a54: 60 12 00 f9  	str	x0, [x19, #32]
+    6a58: 08 fd 43 d3  	lsr	x8, x8, #3
+    6a5c: 09 02 c0 d2  	mov	x9, #68719476736
+    6a60: 08 69 69 38  	ldrb	w8, [x8, x9]
+    6a64: 88 00 00 34  	cbz	w8, 0x6a74 <im2row_cpu_runtime+0x5f0>
+    6a68: 01 00 00 14  	b	0x6a6c <im2row_cpu_runtime+0x5e8>
+    6a6c: 60 12 40 f9  	ldr	x0, [x19, #32]
+;     ree_free(p_output_img);
+    6a70: 3c 03 00 94  	bl	0x7760 <__asan_report_store8@plt>
+    6a74: 69 66 40 f9  	ldr	x9, [x19, #200]
+    6a78: e8 03 1f aa  	mov	x8, xzr
+;     ree_free(p_output_img);
+    6a7c: 28 01 00 f9  	str	x8, [x9]
+    6a80: 01 00 00 14  	b	0x6a84 <im2row_cpu_runtime+0x600>
+;     FUNC_EXIT_LOG;
+    6a84: e1 ff ff d0  	adrp	x1, 0x4000 <im2row_cpu_runtime+0x5f8>
+    6a88: 21 00 05 91  	add	x1, x1, #320
+    6a8c: e2 ff ff d0  	adrp	x2, 0x4000 <im2row_cpu_runtime+0x600>
+    6a90: 42 00 16 91  	add	x2, x2, #1408
+    6a94: 62 0e 00 f9  	str	x2, [x19, #24]
+    6a98: e3 ff ff d0  	adrp	x3, 0x4000 <im2row_cpu_runtime+0x60c>
+    6a9c: 63 00 2e 91  	add	x3, x3, #2944
+    6aa0: 63 0a 00 f9  	str	x3, [x19, #16]
+    6aa4: 60 00 80 52  	mov	w0, #3
+    6aa8: 12 03 00 94  	bl	0x76f0 <__android_log_print@plt>
+    6aac: 61 0a 40 f9  	ldr	x1, [x19, #16]
+    6ab0: 60 0e 40 f9  	ldr	x0, [x19, #24]
+    6ab4: 13 03 00 94  	bl	0x7700 <printf@plt>
+    6ab8: e0 ff ff d0  	adrp	x0, 0x4000 <im2row_cpu_runtime+0x62c>
+    6abc: 00 00 08 91  	add	x0, x0, #512
+    6ac0: 10 03 00 94  	bl	0x7700 <printf@plt>
+    6ac4: 6b 6e 40 f9  	ldr	x11, [x19, #216]
+    6ac8: 6a 6a 40 f9  	ldr	x10, [x19, #208]
+    6acc: 68 8a 40 f9  	ldr	x8, [x19, #272]
+    6ad0: 09 1f 80 52  	mov	w9, #248
+; }
+    6ad4: 69 21 00 39  	strb	w9, [x11, #8]
+    6ad8: 69 11 00 39  	strb	w9, [x11, #4]
+    6adc: c9 c1 86 52  	mov	w9, #13838
+    6ae0: 09 bc a8 72  	movk	w9, #17888, lsl #16
+    6ae4: 49 01 00 f9  	str	x9, [x10]
+    6ae8: c8 01 00 b4  	cbz	x8, 0x6b20 <im2row_cpu_runtime+0x69c>
+    6aec: 01 00 00 14  	b	0x6af0 <im2row_cpu_runtime+0x66c>
+    6af0: 68 8a 40 f9  	ldr	x8, [x19, #272]
+    6af4: 6a 6e 40 f9  	ldr	x10, [x19, #216]
+    6af8: a9 be 9e d2  	mov	x9, #62965
+    6afc: a9 be be f2  	movk	x9, #62965, lsl #16
+    6b00: a9 be de f2  	movk	x9, #62965, lsl #32
+    6b04: a9 be fe f2  	movk	x9, #62965, lsl #48
+; }
+    6b08: 49 01 00 f9  	str	x9, [x10]
+    6b0c: 49 05 00 f9  	str	x9, [x10, #8]
+    6b10: 09 3d 40 f9  	ldr	x9, [x8, #120]
+    6b14: e8 03 1f 2a  	mov	w8, wzr
+    6b18: 28 01 00 39  	strb	w8, [x9]
+    6b1c: 07 00 00 14  	b	0x6b38 <im2row_cpu_runtime+0x6b4>
+    6b20: 69 6e 40 f9  	ldr	x9, [x19, #216]
+    6b24: e8 03 1f aa  	mov	x8, xzr
+; }
+    6b28: 28 01 00 f9  	str	x8, [x9]
+    6b2c: e8 03 1f 2a  	mov	w8, wzr
+    6b30: 28 09 00 b9  	str	w8, [x9, #8]
+    6b34: 01 00 00 14  	b	0x6b38 <im2row_cpu_runtime+0x6b4>
+    6b38: 48 d0 3b d5  	mrs	x8, TPIDR_EL0
+    6b3c: 08 15 40 f9  	ldr	x8, [x8, #40]
+    6b40: 69 be 40 f9  	ldr	x9, [x19, #376]
+    6b44: 08 01 09 eb  	subs	x8, x8, x9
+    6b48: c1 00 00 54  	b.ne	0x6b60 <im2row_cpu_runtime+0x6dc>
+    6b4c: 01 00 00 14  	b	0x6b50 <im2row_cpu_runtime+0x6cc>
+; }
+    6b50: bf 03 00 91  	mov	sp, x29
+    6b54: fc 4f 41 a9  	ldp	x28, x19, [sp, #16]
+    6b58: fd 7b c2 a8  	ldp	x29, x30, [sp], #32
+    6b5c: c0 03 5f d6  	ret
+    6b60: 18 03 00 94  	bl	0x77c0 <__stack_chk_fail@plt>
+
+0000000000006b64 <asan.module_ctor>:
+    6b64: ff 83 00 d1  	sub	sp, sp, #32
+    6b68: fe 0b 00 f9  	str	x30, [sp, #16]
+    6b6c: 28 00 00 90  	adrp	x8, 0xa000 <asan.module_ctor+0x18>
+    6b70: 08 c1 0d 91  	add	x8, x8, #880
+    6b74: e8 07 00 f9  	str	x8, [sp, #8]
+    6b78: e6 02 00 94  	bl	0x7710 <__asan_init@plt>
+    6b7c: e9 02 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    6b80: e0 07 40 f9  	ldr	x0, [sp, #8]
+    6b84: 48 05 80 52  	mov	w8, #42
+    6b88: e1 03 08 2a  	mov	w1, w8
+    6b8c: e9 02 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    6b90: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    6b94: ff 83 00 91  	add	sp, sp, #32
+    6b98: c0 03 5f d6  	ret
+
+0000000000006b9c <asan.module_dtor>:
+    6b9c: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    6ba0: 20 00 00 90  	adrp	x0, 0xa000 <asan.module_dtor+0x14>
+    6ba4: 00 c0 0d 91  	add	x0, x0, #880
+    6ba8: 48 05 80 52  	mov	w8, #42
+    6bac: e1 03 08 2a  	mov	w1, w8
+    6bb0: e4 02 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    6bb4: fe 07 41 f8  	ldr	x30, [sp], #16
+    6bb8: c0 03 5f d6  	ret
+
+0000000000006bbc <asan.module_ctor>:
+    6bbc: ff 83 00 d1  	sub	sp, sp, #32
+    6bc0: fe 0b 00 f9  	str	x30, [sp, #16]
+    6bc4: 28 00 00 90  	adrp	x8, 0xa000 <asan.module_ctor+0x18>
+    6bc8: 08 c1 37 91  	add	x8, x8, #3568
+    6bcc: e8 07 00 f9  	str	x8, [sp, #8]
+    6bd0: d0 02 00 94  	bl	0x7710 <__asan_init@plt>
+    6bd4: d3 02 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    6bd8: e0 07 40 f9  	ldr	x0, [sp, #8]
+    6bdc: 68 02 80 52  	mov	w8, #19
+    6be0: e1 03 08 2a  	mov	w1, w8
+    6be4: d3 02 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    6be8: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    6bec: ff 83 00 91  	add	sp, sp, #32
+    6bf0: c0 03 5f d6  	ret
+
+0000000000006bf4 <asan.module_dtor>:
+    6bf4: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    6bf8: 20 00 00 90  	adrp	x0, 0xa000 <asan.module_dtor+0x14>
+    6bfc: 00 c0 37 91  	add	x0, x0, #3568
+    6c00: 68 02 80 52  	mov	w8, #19
+    6c04: e1 03 08 2a  	mov	w1, w8
+    6c08: ce 02 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    6c0c: fe 07 41 f8  	ldr	x30, [sp], #16
+    6c10: c0 03 5f d6  	ret
+
+0000000000006c14 <asan.module_ctor>:
+    6c14: ff 83 00 d1  	sub	sp, sp, #32
+    6c18: fe 0b 00 f9  	str	x30, [sp, #16]
+    6c1c: 28 00 00 b0  	adrp	x8, 0xb000 <asan.module_ctor+0x1c>
+    6c20: 08 c1 0a 91  	add	x8, x8, #688
+    6c24: e8 07 00 f9  	str	x8, [sp, #8]
+    6c28: ba 02 00 94  	bl	0x7710 <__asan_init@plt>
+    6c2c: bd 02 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    6c30: e0 07 40 f9  	ldr	x0, [sp, #8]
+    6c34: 88 01 80 52  	mov	w8, #12
+    6c38: e1 03 08 2a  	mov	w1, w8
+    6c3c: bd 02 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    6c40: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    6c44: ff 83 00 91  	add	sp, sp, #32
+    6c48: c0 03 5f d6  	ret
+
+0000000000006c4c <asan.module_dtor>:
+    6c4c: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    6c50: 20 00 00 b0  	adrp	x0, 0xb000 <asan.module_dtor+0x18>
+    6c54: 00 c0 0a 91  	add	x0, x0, #688
+    6c58: 88 01 80 52  	mov	w8, #12
+    6c5c: e1 03 08 2a  	mov	w1, w8
+    6c60: b8 02 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    6c64: fe 07 41 f8  	ldr	x30, [sp], #16
+    6c68: c0 03 5f d6  	ret
+
+0000000000006c6c <asan.module_ctor>:
+    6c6c: ff 83 00 d1  	sub	sp, sp, #32
+    6c70: fe 0b 00 f9  	str	x30, [sp, #16]
+    6c74: 28 00 00 b0  	adrp	x8, 0xb000 <asan.module_ctor+0x1c>
+    6c78: 08 c1 16 91  	add	x8, x8, #1456
+    6c7c: e8 07 00 f9  	str	x8, [sp, #8]
+    6c80: a4 02 00 94  	bl	0x7710 <__asan_init@plt>
+    6c84: a7 02 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    6c88: e0 07 40 f9  	ldr	x0, [sp, #8]
+    6c8c: 08 01 80 52  	mov	w8, #8
+    6c90: e1 03 08 2a  	mov	w1, w8
+    6c94: a7 02 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    6c98: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    6c9c: ff 83 00 91  	add	sp, sp, #32
+    6ca0: c0 03 5f d6  	ret
+
+0000000000006ca4 <asan.module_dtor>:
+    6ca4: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    6ca8: 20 00 00 b0  	adrp	x0, 0xb000 <asan.module_dtor+0x18>
+    6cac: 00 c0 16 91  	add	x0, x0, #1456
+    6cb0: 08 01 80 52  	mov	w8, #8
+    6cb4: e1 03 08 2a  	mov	w1, w8
+    6cb8: a2 02 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    6cbc: fe 07 41 f8  	ldr	x30, [sp], #16
+    6cc0: c0 03 5f d6  	ret
+
+0000000000006cc4 <im2row_cpu_c>:
+; {
+    6cc4: ff 83 03 d1  	sub	sp, sp, #224
+    6cc8: fd 7b 0d a9  	stp	x29, x30, [sp, #208]
+    6ccc: fd 43 03 91  	add	x29, sp, #208
+    6cd0: a0 83 1d f8  	stur	x0, [x29, #-40]
+    6cd4: a1 43 1d b8  	stur	w1, [x29, #-44]
+    6cd8: a2 03 1d b8  	stur	w2, [x29, #-48]
+    6cdc: a3 c3 1c b8  	stur	w3, [x29, #-52]
+    6ce0: a4 83 1c b8  	stur	w4, [x29, #-56]
+    6ce4: a5 43 1c b8  	stur	w5, [x29, #-60]
+    6ce8: a6 03 1c b8  	stur	w6, [x29, #-64]
+    6cec: a7 83 1b f8  	stur	x7, [x29, #-72]
+;     uint8_t *p_row_data = NULL;
+    6cf0: bf 03 1b f8  	stur	xzr, [x29, #-80]
+;     int output_highs = 0, output_widths = 0, output_channels = 0, output_nums = 0;
+    6cf4: bf c3 1a b8  	stur	wzr, [x29, #-84]
+    6cf8: bf 83 1a b8  	stur	wzr, [x29, #-88]
+    6cfc: bf 43 1a b8  	stur	wzr, [x29, #-92]
+    6d00: bf 03 1a b8  	stur	wzr, [x29, #-96]
+;     int high_offset = 0, width_offset = 0, input_channel_ind = 0;
+    6d04: bf c3 19 b8  	stur	wzr, [x29, #-100]
+    6d08: ff 6b 00 b9  	str	wzr, [sp, #104]
+    6d0c: ff 67 00 b9  	str	wzr, [sp, #100]
+;     int row_data_ind = 0;
+    6d10: ff 63 00 b9  	str	wzr, [sp, #96]
+;     output_highs = (in_highs + 2*padding - kernel_size) / stride + 1;
+    6d14: a8 43 5d b8  	ldur	w8, [x29, #-44]
+    6d18: aa 03 5c b8  	ldur	w10, [x29, #-64]
+    6d1c: 49 00 80 52  	mov	w9, #2
+    6d20: 2a 7d 0a 1b  	mul	w10, w9, w10
+    6d24: 08 01 0a 0b  	add	w8, w8, w10
+    6d28: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    6d2c: 08 01 0a 6b  	subs	w8, w8, w10
+    6d30: aa 43 5c b8  	ldur	w10, [x29, #-60]
+    6d34: 08 09 ca 1a  	udiv	w8, w8, w10
+    6d38: 08 05 00 11  	add	w8, w8, #1
+    6d3c: a8 c3 1a b8  	stur	w8, [x29, #-84]
+;     output_widths = (in_widths + 2*padding - kernel_size) / stride + 1;
+    6d40: a8 03 5d b8  	ldur	w8, [x29, #-48]
+    6d44: aa 03 5c b8  	ldur	w10, [x29, #-64]
+    6d48: 29 7d 0a 1b  	mul	w9, w9, w10
+    6d4c: 08 01 09 0b  	add	w8, w8, w9
+    6d50: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    6d54: 08 01 09 6b  	subs	w8, w8, w9
+    6d58: a9 43 5c b8  	ldur	w9, [x29, #-60]
+    6d5c: 08 09 c9 1a  	udiv	w8, w8, w9
+    6d60: 08 05 00 11  	add	w8, w8, #1
+    6d64: a8 83 1a b8  	stur	w8, [x29, #-88]
+;     output_channels = kernel_size*kernel_size*in_channels;
+    6d68: a8 83 5c b8  	ldur	w8, [x29, #-56]
+    6d6c: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    6d70: 08 7d 09 1b  	mul	w8, w8, w9
+    6d74: a9 c3 5c b8  	ldur	w9, [x29, #-52]
+    6d78: 08 7d 09 1b  	mul	w8, w8, w9
+    6d7c: a8 43 1a b8  	stur	w8, [x29, #-92]
+;     output_nums = output_highs * output_widths;
+    6d80: a8 c3 5a b8  	ldur	w8, [x29, #-84]
+    6d84: a9 83 5a b8  	ldur	w9, [x29, #-88]
+    6d88: 08 7d 09 1b  	mul	w8, w8, w9
+    6d8c: a8 03 1a b8  	stur	w8, [x29, #-96]
+;     p_row_data = ree_malloc(sizeof(uint8_t)*output_nums*output_channels);
+    6d90: a9 03 9a b8  	ldursw	x9, [x29, #-96]
+    6d94: 28 00 80 d2  	mov	x8, #1
+    6d98: 08 7d 09 9b  	mul	x8, x8, x9
+    6d9c: a9 43 9a b8  	ldursw	x9, [x29, #-92]
+    6da0: 00 7d 09 9b  	mul	x0, x8, x9
+    6da4: 73 02 00 94  	bl	0x7770 <malloc@plt>
+    6da8: a0 03 1b f8  	stur	x0, [x29, #-80]
+;     if (!p_row_data)
+    6dac: a8 03 5b f8  	ldur	x8, [x29, #-80]
+    6db0: 48 02 00 b5  	cbnz	x8, 0x6df8 <im2row_cpu_c+0x134>
+    6db4: c0 00 80 52  	mov	w0, #6
+    6db8: e1 ff ff f0  	adrp	x1, 0x5000 <im2row_cpu_c+0xf0>
+    6dbc: 21 80 22 91  	add	x1, x1, #2208
+    6dc0: e2 ff ff f0  	adrp	x2, 0x5000 <im2row_cpu_c+0xf8>
+    6dc4: 42 80 23 91  	add	x2, x2, #2272
+    6dc8: e2 27 00 f9  	str	x2, [sp, #72]
+    6dcc: e3 ff ff f0  	adrp	x3, 0x5000 <im2row_cpu_c+0x104>
+    6dd0: 63 80 24 91  	add	x3, x3, #2336
+    6dd4: e3 23 00 f9  	str	x3, [sp, #64]
+;         ree_log(LOG_ERROR, "%s allocs p_row_data failed", __func__);
+    6dd8: 46 02 00 94  	bl	0x76f0 <__android_log_print@plt>
+    6ddc: e1 23 40 f9  	ldr	x1, [sp, #64]
+    6de0: e0 27 40 f9  	ldr	x0, [sp, #72]
+    6de4: 47 02 00 94  	bl	0x7700 <printf@plt>
+    6de8: e0 ff ff f0  	adrp	x0, 0x5000 <im2row_cpu_c+0x120>
+    6dec: 00 80 25 91  	add	x0, x0, #2400
+;         ree_log(LOG_ERROR, "%s allocs p_row_data failed", __func__);
+    6df0: 44 02 00 94  	bl	0x7700 <printf@plt>
+;         goto EXIT_IM2ROW_CPU_C;
+    6df4: 87 00 00 14  	b	0x7010 <im2row_cpu_c+0x34c>
+;     ree_set(p_row_data, 0, sizeof(uint8_t)*output_nums*output_channels);
+    6df8: a9 03 5b f8  	ldur	x9, [x29, #-80]
+    6dfc: aa 03 9a b8  	ldursw	x10, [x29, #-96]
+    6e00: 28 00 80 d2  	mov	x8, #1
+    6e04: 08 7d 0a 9b  	mul	x8, x8, x10
+    6e08: aa 43 9a b8  	ldursw	x10, [x29, #-92]
+    6e0c: 08 7d 0a 9b  	mul	x8, x8, x10
+    6e10: a9 83 1f f8  	stur	x9, [x29, #-8]
+    6e14: 09 00 80 92  	mov	x9, #-1
+    6e18: a9 03 1f f8  	stur	x9, [x29, #-16]
+    6e1c: bf c3 1e b8  	stur	wzr, [x29, #-20]
+    6e20: a8 03 1e f8  	stur	x8, [x29, #-32]
+;     return __builtin_memset(s, c, n);
+    6e24: a0 83 5f f8  	ldur	x0, [x29, #-8]
+    6e28: a8 c3 5e b8  	ldur	w8, [x29, #-20]
+    6e2c: a2 03 5e f8  	ldur	x2, [x29, #-32]
+    6e30: 01 1d 00 12  	and	w1, w8, #0xff
+    6e34: 67 02 00 94  	bl	0x77d0 <__asan_memset@plt>
+;     for (int output_channels_ind = 0; output_channels_ind<output_channels; output_channels_ind++)
+    6e38: ff 5f 00 b9  	str	wzr, [sp, #92]
+    6e3c: e8 5f 40 b9  	ldr	w8, [sp, #92]
+    6e40: a9 43 5a b8  	ldur	w9, [x29, #-92]
+    6e44: 08 01 09 6b  	subs	w8, w8, w9
+    6e48: 8b 00 00 54  	b.lt	0x6e58 <im2row_cpu_c+0x194>
+    6e4c: a8 00 80 52  	mov	w8, #5
+    6e50: e8 5b 00 b9  	str	w8, [sp, #88]
+    6e54: 61 00 00 14  	b	0x6fd8 <im2row_cpu_c+0x314>
+;         for(int output_high_ind = 0; output_high_ind<output_highs; output_high_ind++)
+    6e58: ff 57 00 b9  	str	wzr, [sp, #84]
+    6e5c: e8 57 40 b9  	ldr	w8, [sp, #84]
+    6e60: a9 c3 5a b8  	ldur	w9, [x29, #-84]
+    6e64: 08 01 09 6b  	subs	w8, w8, w9
+    6e68: 8b 00 00 54  	b.lt	0x6e78 <im2row_cpu_c+0x1b4>
+    6e6c: 08 01 80 52  	mov	w8, #8
+    6e70: e8 5b 00 b9  	str	w8, [sp, #88]
+    6e74: 55 00 00 14  	b	0x6fc8 <im2row_cpu_c+0x304>
+;             for (int output_width_ind = 0; output_width_ind<output_widths; output_width_ind++)
+    6e78: ff 53 00 b9  	str	wzr, [sp, #80]
+    6e7c: e8 53 40 b9  	ldr	w8, [sp, #80]
+    6e80: a9 83 5a b8  	ldur	w9, [x29, #-88]
+    6e84: 08 01 09 6b  	subs	w8, w8, w9
+    6e88: 8b 00 00 54  	b.lt	0x6e98 <im2row_cpu_c+0x1d4>
+    6e8c: 68 01 80 52  	mov	w8, #11
+    6e90: e8 5b 00 b9  	str	w8, [sp, #88]
+    6e94: 49 00 00 14  	b	0x6fb8 <im2row_cpu_c+0x2f4>
+;                 width_offset = output_channels_ind%kernel_size;
+    6e98: e8 5f 40 b9  	ldr	w8, [sp, #92]
+    6e9c: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    6ea0: 09 09 ca 1a  	udiv	w9, w8, w10
+    6ea4: 29 7d 0a 1b  	mul	w9, w9, w10
+    6ea8: 08 01 09 6b  	subs	w8, w8, w9
+    6eac: e8 6b 00 b9  	str	w8, [sp, #104]
+;                 high_offset = (output_channels_ind/kernel_size)%kernel_size;
+    6eb0: e8 5f 40 b9  	ldr	w8, [sp, #92]
+    6eb4: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    6eb8: 08 09 c9 1a  	udiv	w8, w8, w9
+    6ebc: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    6ec0: 09 09 ca 1a  	udiv	w9, w8, w10
+    6ec4: 29 7d 0a 1b  	mul	w9, w9, w10
+    6ec8: 08 01 09 6b  	subs	w8, w8, w9
+    6ecc: a8 c3 19 b8  	stur	w8, [x29, #-100]
+;                 input_channel_ind = output_channels_ind / (kernel_size*kernel_size);
+    6ed0: e8 5f 40 b9  	ldr	w8, [sp, #92]
+    6ed4: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    6ed8: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    6edc: 29 7d 0a 1b  	mul	w9, w9, w10
+    6ee0: 08 09 c9 1a  	udiv	w8, w8, w9
+    6ee4: e8 67 00 b9  	str	w8, [sp, #100]
+;                 row_data_ind = output_channels_ind + (output_width_ind + output_high_ind*output_widths)*output_channels;
+    6ee8: e8 5f 40 b9  	ldr	w8, [sp, #92]
+    6eec: e9 53 40 b9  	ldr	w9, [sp, #80]
+    6ef0: ea 57 40 b9  	ldr	w10, [sp, #84]
+    6ef4: ab 83 5a b8  	ldur	w11, [x29, #-88]
+    6ef8: 4a 7d 0b 1b  	mul	w10, w10, w11
+    6efc: 29 01 0a 0b  	add	w9, w9, w10
+    6f00: aa 43 5a b8  	ldur	w10, [x29, #-92]
+    6f04: 29 7d 0a 1b  	mul	w9, w9, w10
+    6f08: 08 01 09 0b  	add	w8, w8, w9
+    6f0c: e8 63 00 b9  	str	w8, [sp, #96]
+;                 p_row_data[row_data_ind] = im2row_get_pixel_uint8_t(in_img,
+    6f10: a0 83 5d f8  	ldur	x0, [x29, #-40]
+;                                                                     in_highs, in_widths,
+    6f14: a1 43 5d b8  	ldur	w1, [x29, #-44]
+    6f18: a2 03 5d b8  	ldur	w2, [x29, #-48]
+;                                                                     high_offset + output_high_ind*stride,
+    6f1c: a8 c3 59 b8  	ldur	w8, [x29, #-100]
+    6f20: e9 57 40 b9  	ldr	w9, [sp, #84]
+    6f24: aa 43 5c b8  	ldur	w10, [x29, #-60]
+    6f28: 29 7d 0a 1b  	mul	w9, w9, w10
+    6f2c: 03 01 09 0b  	add	w3, w8, w9
+;                                                                     width_offset + output_width_ind*stride,
+    6f30: e8 6b 40 b9  	ldr	w8, [sp, #104]
+    6f34: e9 53 40 b9  	ldr	w9, [sp, #80]
+    6f38: aa 43 5c b8  	ldur	w10, [x29, #-60]
+    6f3c: 29 7d 0a 1b  	mul	w9, w9, w10
+    6f40: 04 01 09 0b  	add	w4, w8, w9
+;                                                                     input_channel_ind,
+    6f44: e5 67 40 b9  	ldr	w5, [sp, #100]
+;                                                                     padding);
+    6f48: a6 03 5c b8  	ldur	w6, [x29, #-64]
+;                 p_row_data[row_data_ind] = im2row_get_pixel_uint8_t(in_img,
+    6f4c: 34 00 00 94  	bl	0x701c <im2row_get_pixel_uint8_t>
+    6f50: e0 27 00 b9  	str	w0, [sp, #36]
+    6f54: a8 03 5b f8  	ldur	x8, [x29, #-80]
+    6f58: e9 63 80 b9  	ldrsw	x9, [sp, #96]
+    6f5c: 09 01 09 8b  	add	x9, x8, x9
+    6f60: e9 17 00 f9  	str	x9, [sp, #40]
+    6f64: e9 1b 00 f9  	str	x9, [sp, #48]
+    6f68: 08 02 c0 d2  	mov	x8, #68719476736
+    6f6c: 08 0d 49 8b  	add	x8, x8, x9, lsr #3
+    6f70: 08 01 40 39  	ldrb	w8, [x8]
+    6f74: e8 3f 00 b9  	str	w8, [sp, #60]
+    6f78: 28 01 00 34  	cbz	w8, 0x6f9c <im2row_cpu_c+0x2d8>
+    6f7c: e9 3f 40 b9  	ldr	w9, [sp, #60]
+    6f80: e8 1b 40 f9  	ldr	x8, [sp, #48]
+;                 p_row_data[row_data_ind] = im2row_get_pixel_uint8_t(in_img,
+    6f84: 08 09 40 92  	and	x8, x8, #0x7
+    6f88: 08 1d 00 13  	sxtb	w8, w8
+    6f8c: 08 81 29 6b  	subs	w8, w8, w9, sxtb
+    6f90: 6b 00 00 54  	b.lt	0x6f9c <im2row_cpu_c+0x2d8>
+    6f94: e0 1b 40 f9  	ldr	x0, [sp, #48]
+;                 p_row_data[row_data_ind] = im2row_get_pixel_uint8_t(in_img,
+    6f98: fa 01 00 94  	bl	0x7780 <__asan_report_store1@plt>
+    6f9c: e8 27 40 b9  	ldr	w8, [sp, #36]
+    6fa0: e9 17 40 f9  	ldr	x9, [sp, #40]
+;                 p_row_data[row_data_ind] = im2row_get_pixel_uint8_t(in_img,
+    6fa4: 28 01 00 39  	strb	w8, [x9]
+;             for (int output_width_ind = 0; output_width_ind<output_widths; output_width_ind++)
+    6fa8: e8 53 40 b9  	ldr	w8, [sp, #80]
+    6fac: 08 05 00 11  	add	w8, w8, #1
+    6fb0: e8 53 00 b9  	str	w8, [sp, #80]
+    6fb4: b2 ff ff 17  	b	0x6e7c <im2row_cpu_c+0x1b8>
+;         for(int output_high_ind = 0; output_high_ind<output_highs; output_high_ind++)
+    6fb8: e8 57 40 b9  	ldr	w8, [sp, #84]
+    6fbc: 08 05 00 11  	add	w8, w8, #1
+    6fc0: e8 57 00 b9  	str	w8, [sp, #84]
+    6fc4: a6 ff ff 17  	b	0x6e5c <im2row_cpu_c+0x198>
+;     for (int output_channels_ind = 0; output_channels_ind<output_channels; output_channels_ind++)
+    6fc8: e8 5f 40 b9  	ldr	w8, [sp, #92]
+    6fcc: 08 05 00 11  	add	w8, w8, #1
+    6fd0: e8 5f 00 b9  	str	w8, [sp, #92]
+    6fd4: 9a ff ff 17  	b	0x6e3c <im2row_cpu_c+0x178>
+;     *pp_output_row = p_row_data;
+    6fd8: a8 03 5b f8  	ldur	x8, [x29, #-80]
+    6fdc: e8 07 00 f9  	str	x8, [sp, #8]
+    6fe0: a9 83 5b f8  	ldur	x9, [x29, #-72]
+    6fe4: e9 0b 00 f9  	str	x9, [sp, #16]
+    6fe8: e9 0f 00 f9  	str	x9, [sp, #24]
+    6fec: 08 02 c0 d2  	mov	x8, #68719476736
+    6ff0: 08 0d 49 8b  	add	x8, x8, x9, lsr #3
+    6ff4: 08 01 40 39  	ldrb	w8, [x8]
+    6ff8: 68 00 00 34  	cbz	w8, 0x7004 <im2row_cpu_c+0x340>
+    6ffc: e0 0f 40 f9  	ldr	x0, [sp, #24]
+;     *pp_output_row = p_row_data;
+    7000: d8 01 00 94  	bl	0x7760 <__asan_report_store8@plt>
+    7004: e8 07 40 f9  	ldr	x8, [sp, #8]
+    7008: e9 0b 40 f9  	ldr	x9, [sp, #16]
+;     *pp_output_row = p_row_data;
+    700c: 28 01 00 f9  	str	x8, [x9]
+; }
+    7010: fd 7b 4d a9  	ldp	x29, x30, [sp, #208]
+    7014: ff 83 03 91  	add	sp, sp, #224
+    7018: c0 03 5f d6  	ret
+
+000000000000701c <im2row_get_pixel_uint8_t>:
+; {
+    701c: ff 43 01 d1  	sub	sp, sp, #80
+    7020: fd 7b 04 a9  	stp	x29, x30, [sp, #64]
+    7024: fd 03 01 91  	add	x29, sp, #64
+    7028: a0 83 1f f8  	stur	x0, [x29, #-8]
+    702c: a1 43 1f b8  	stur	w1, [x29, #-12]
+    7030: a2 03 1f b8  	stur	w2, [x29, #-16]
+    7034: a3 c3 1e b8  	stur	w3, [x29, #-20]
+    7038: a4 83 1e b8  	stur	w4, [x29, #-24]
+    703c: a5 43 1e b8  	stur	w5, [x29, #-28]
+    7040: e6 23 00 b9  	str	w6, [sp, #32]
+;     uint8_t pixel_contents = 0;
+    7044: ff 7f 00 39  	strb	wzr, [sp, #31]
+;     int row_data_high_wo_padding = 0, row_data_width_wo_padding = 0;
+    7048: ff 1b 00 b9  	str	wzr, [sp, #24]
+    704c: ff 17 00 b9  	str	wzr, [sp, #20]
+;     row_data_high_wo_padding = row_data_high - padding;
+    7050: a8 c3 5e b8  	ldur	w8, [x29, #-20]
+    7054: e9 23 40 b9  	ldr	w9, [sp, #32]
+    7058: 08 01 09 6b  	subs	w8, w8, w9
+    705c: e8 1b 00 b9  	str	w8, [sp, #24]
+;     row_data_width_wo_padding = row_data_width - padding;
+    7060: a8 83 5e b8  	ldur	w8, [x29, #-24]
+    7064: e9 23 40 b9  	ldr	w9, [sp, #32]
+    7068: 08 01 09 6b  	subs	w8, w8, w9
+    706c: e8 17 00 b9  	str	w8, [sp, #20]
+;     if ((row_data_high_wo_padding<0) ||
+    7070: e8 1b 40 b9  	ldr	w8, [sp, #24]
+    7074: 68 01 f8 37  	tbnz	w8, #31, 0x70a0 <im2row_get_pixel_uint8_t+0x84>
+;         (row_data_width_wo_padding<0) ||
+    7078: e8 17 40 b9  	ldr	w8, [sp, #20]
+    707c: 28 01 f8 37  	tbnz	w8, #31, 0x70a0 <im2row_get_pixel_uint8_t+0x84>
+;         (row_data_high_wo_padding >= in_highs) ||
+    7080: e8 1b 40 b9  	ldr	w8, [sp, #24]
+    7084: a9 43 5f b8  	ldur	w9, [x29, #-12]
+    7088: 08 01 09 6b  	subs	w8, w8, w9
+    708c: aa 00 00 54  	b.ge	0x70a0 <im2row_get_pixel_uint8_t+0x84>
+;         (row_data_width_wo_padding >= in_widths))
+    7090: e8 17 40 b9  	ldr	w8, [sp, #20]
+    7094: a9 03 5f b8  	ldur	w9, [x29, #-16]
+;     if ((row_data_high_wo_padding<0) ||
+    7098: 08 01 09 6b  	subs	w8, w8, w9
+    709c: 6b 00 00 54  	b.lt	0x70a8 <im2row_get_pixel_uint8_t+0x8c>
+;         pixel_contents = 0;
+    70a0: ff 7f 00 39  	strb	wzr, [sp, #31]
+;     }
+    70a4: 1e 00 00 14  	b	0x711c <im2row_get_pixel_uint8_t+0x100>
+;         pixel_contents = in_img[(input_channel_ind*in_highs+row_data_high_wo_padding)*in_widths + row_data_width_wo_padding];
+    70a8: a8 83 5f f8  	ldur	x8, [x29, #-8]
+    70ac: a9 43 5e b8  	ldur	w9, [x29, #-28]
+    70b0: aa 43 5f b8  	ldur	w10, [x29, #-12]
+    70b4: 29 7d 0a 1b  	mul	w9, w9, w10
+    70b8: ea 1b 40 b9  	ldr	w10, [sp, #24]
+    70bc: 29 01 0a 0b  	add	w9, w9, w10
+    70c0: aa 03 5f b8  	ldur	w10, [x29, #-16]
+    70c4: 29 7d 0a 1b  	mul	w9, w9, w10
+    70c8: ea 17 40 b9  	ldr	w10, [sp, #20]
+    70cc: 29 01 0a 0b  	add	w9, w9, w10
+    70d0: 09 c1 29 8b  	add	x9, x8, w9, sxtw
+    70d4: e9 03 00 f9  	str	x9, [sp]
+    70d8: e9 07 00 f9  	str	x9, [sp, #8]
+    70dc: 08 02 c0 d2  	mov	x8, #68719476736
+    70e0: 08 0d 49 8b  	add	x8, x8, x9, lsr #3
+    70e4: 08 01 40 39  	ldrb	w8, [x8]
+    70e8: e8 13 00 b9  	str	w8, [sp, #16]
+    70ec: 28 01 00 34  	cbz	w8, 0x7110 <im2row_get_pixel_uint8_t+0xf4>
+    70f0: e9 13 40 b9  	ldr	w9, [sp, #16]
+    70f4: e8 07 40 f9  	ldr	x8, [sp, #8]
+;         pixel_contents = in_img[(input_channel_ind*in_highs+row_data_high_wo_padding)*in_widths + row_data_width_wo_padding];
+    70f8: 08 09 40 92  	and	x8, x8, #0x7
+    70fc: 08 1d 00 13  	sxtb	w8, w8
+    7100: 08 81 29 6b  	subs	w8, w8, w9, sxtb
+    7104: 6b 00 00 54  	b.lt	0x7110 <im2row_get_pixel_uint8_t+0xf4>
+    7108: e0 07 40 f9  	ldr	x0, [sp, #8]
+;         pixel_contents = in_img[(input_channel_ind*in_highs+row_data_high_wo_padding)*in_widths + row_data_width_wo_padding];
+    710c: a5 01 00 94  	bl	0x77a0 <__asan_report_load1@plt>
+    7110: e8 03 40 f9  	ldr	x8, [sp]
+;         pixel_contents = in_img[(input_channel_ind*in_highs+row_data_high_wo_padding)*in_widths + row_data_width_wo_padding];
+    7114: 08 01 40 39  	ldrb	w8, [x8]
+    7118: e8 7f 00 39  	strb	w8, [sp, #31]
+;     return pixel_contents;
+    711c: e0 7f 40 39  	ldrb	w0, [sp, #31]
+    7120: fd 7b 44 a9  	ldp	x29, x30, [sp, #64]
+    7124: ff 43 01 91  	add	sp, sp, #80
+    7128: c0 03 5f d6  	ret
+
+000000000000712c <row2im_cpu_c>:
+; {
+    712c: ff 03 04 d1  	sub	sp, sp, #256
+    7130: fd 7b 0f a9  	stp	x29, x30, [sp, #240]
+    7134: fd c3 03 91  	add	x29, sp, #240
+    7138: a0 83 1d f8  	stur	x0, [x29, #-40]
+    713c: a1 43 1d b8  	stur	w1, [x29, #-44]
+    7140: a2 03 1d b8  	stur	w2, [x29, #-48]
+    7144: a3 c3 1c b8  	stur	w3, [x29, #-52]
+    7148: a4 83 1c b8  	stur	w4, [x29, #-56]
+    714c: a5 43 1c b8  	stur	w5, [x29, #-60]
+    7150: a6 03 1c b8  	stur	w6, [x29, #-64]
+    7154: a7 83 1b f8  	stur	x7, [x29, #-72]
+;     uint8_t *p_output_img = NULL;
+    7158: bf 03 1b f8  	stur	xzr, [x29, #-80]
+;     unsigned int output_row_highs = 0, output_row_widths = 0, output_row_channels = 0;
+    715c: bf c3 1a b8  	stur	wzr, [x29, #-84]
+    7160: bf 83 1a b8  	stur	wzr, [x29, #-88]
+    7164: bf 43 1a b8  	stur	wzr, [x29, #-92]
+;     unsigned int high_offset = 0, width_offset = 0, input_channel_ind = 0;
+    7168: bf 03 1a b8  	stur	wzr, [x29, #-96]
+    716c: bf c3 19 b8  	stur	wzr, [x29, #-100]
+    7170: bf 83 19 b8  	stur	wzr, [x29, #-104]
+;     unsigned int row_data_ind = 0;
+    7174: bf 43 19 b8  	stur	wzr, [x29, #-108]
+;     int output_img_ind = 0;
+    7178: bf 03 19 b8  	stur	wzr, [x29, #-112]
+;     if (!in_row_data) {
+    717c: a8 83 5d f8  	ldur	x8, [x29, #-40]
+    7180: 48 02 00 b5  	cbnz	x8, 0x71c8 <row2im_cpu_c+0x9c>
+    7184: c0 00 80 52  	mov	w0, #6
+    7188: e1 ff ff d0  	adrp	x1, 0x5000 <row2im_cpu_c+0x54>
+    718c: 21 80 22 91  	add	x1, x1, #2208
+    7190: e2 ff ff d0  	adrp	x2, 0x5000 <row2im_cpu_c+0x5c>
+    7194: 42 80 26 91  	add	x2, x2, #2464
+    7198: e2 37 00 f9  	str	x2, [sp, #104]
+    719c: e3 ff ff d0  	adrp	x3, 0x5000 <row2im_cpu_c+0x68>
+    71a0: 63 00 28 91  	add	x3, x3, #2560
+    71a4: e3 33 00 f9  	str	x3, [sp, #96]
+;         ree_log(LOG_ERROR, "%s occurs error due to invalid parameter", __func__);
+    71a8: 52 01 00 94  	bl	0x76f0 <__android_log_print@plt>
+    71ac: e1 33 40 f9  	ldr	x1, [sp, #96]
+    71b0: e0 37 40 f9  	ldr	x0, [sp, #104]
+    71b4: 53 01 00 94  	bl	0x7700 <printf@plt>
+    71b8: e0 ff ff d0  	adrp	x0, 0x5000 <row2im_cpu_c+0x84>
+    71bc: 00 80 25 91  	add	x0, x0, #2400
+;         ree_log(LOG_ERROR, "%s occurs error due to invalid parameter", __func__);
+    71c0: 50 01 00 94  	bl	0x7700 <printf@plt>
+;         goto EXIT_ROW2IM_CPU_C;
+    71c4: d9 00 00 14  	b	0x7528 <row2im_cpu_c+0x3fc>
+;     output_row_highs =  (in_highs + 2*padding - kernel_size)/stride + 1;
+    71c8: a8 43 5d b8  	ldur	w8, [x29, #-44]
+    71cc: aa 03 5c b8  	ldur	w10, [x29, #-64]
+    71d0: 49 00 80 52  	mov	w9, #2
+    71d4: 2a 7d 0a 1b  	mul	w10, w9, w10
+    71d8: 08 01 0a 0b  	add	w8, w8, w10
+    71dc: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    71e0: 08 01 0a 6b  	subs	w8, w8, w10
+    71e4: aa 43 5c b8  	ldur	w10, [x29, #-60]
+    71e8: 08 09 ca 1a  	udiv	w8, w8, w10
+    71ec: 08 05 00 11  	add	w8, w8, #1
+    71f0: a8 c3 1a b8  	stur	w8, [x29, #-84]
+;     output_row_widths = (in_widths + 2*padding - kernel_size)/stride + 1;
+    71f4: a8 03 5d b8  	ldur	w8, [x29, #-48]
+    71f8: aa 03 5c b8  	ldur	w10, [x29, #-64]
+    71fc: 29 7d 0a 1b  	mul	w9, w9, w10
+    7200: 08 01 09 0b  	add	w8, w8, w9
+    7204: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    7208: 08 01 09 6b  	subs	w8, w8, w9
+    720c: a9 43 5c b8  	ldur	w9, [x29, #-60]
+    7210: 08 09 c9 1a  	udiv	w8, w8, w9
+    7214: 08 05 00 11  	add	w8, w8, #1
+    7218: a8 83 1a b8  	stur	w8, [x29, #-88]
+;     output_row_channels = (kernel_size*kernel_size)*in_channels;
+    721c: a8 83 5c b8  	ldur	w8, [x29, #-56]
+    7220: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    7224: 08 7d 09 1b  	mul	w8, w8, w9
+    7228: a9 c3 5c b8  	ldur	w9, [x29, #-52]
+    722c: 08 7d 09 1b  	mul	w8, w8, w9
+    7230: a8 43 1a b8  	stur	w8, [x29, #-92]
+;     p_output_img = ree_malloc(sizeof(uint8_t)*in_highs*in_widths*in_channels);
+    7234: a8 43 5d b8  	ldur	w8, [x29, #-44]
+    7238: e9 03 08 2a  	mov	w9, w8
+    723c: 28 00 80 d2  	mov	x8, #1
+    7240: 08 7d 09 9b  	mul	x8, x8, x9
+    7244: a9 03 5d b8  	ldur	w9, [x29, #-48]
+    7248: 08 7d 09 9b  	mul	x8, x8, x9
+    724c: a9 c3 5c b8  	ldur	w9, [x29, #-52]
+    7250: 00 7d 09 9b  	mul	x0, x8, x9
+    7254: 47 01 00 94  	bl	0x7770 <malloc@plt>
+    7258: a0 03 1b f8  	stur	x0, [x29, #-80]
+;     if (!p_output_img)
+    725c: a8 03 5b f8  	ldur	x8, [x29, #-80]
+    7260: 48 02 00 b5  	cbnz	x8, 0x72a8 <row2im_cpu_c+0x17c>
+    7264: 60 00 80 52  	mov	w0, #3
+    7268: e1 ff ff d0  	adrp	x1, 0x5000 <row2im_cpu_c+0x134>
+    726c: 21 80 22 91  	add	x1, x1, #2208
+    7270: e2 ff ff d0  	adrp	x2, 0x5000 <row2im_cpu_c+0x13c>
+    7274: 42 00 29 91  	add	x2, x2, #2624
+    7278: e2 2f 00 f9  	str	x2, [sp, #88]
+    727c: e3 ff ff d0  	adrp	x3, 0x5000 <row2im_cpu_c+0x148>
+    7280: 63 00 28 91  	add	x3, x3, #2560
+    7284: e3 2b 00 f9  	str	x3, [sp, #80]
+;         ree_log(LOG_DEBUG, "%s allocates p_output_img failed", __func__);
+    7288: 1a 01 00 94  	bl	0x76f0 <__android_log_print@plt>
+    728c: e1 2b 40 f9  	ldr	x1, [sp, #80]
+    7290: e0 2f 40 f9  	ldr	x0, [sp, #88]
+    7294: 1b 01 00 94  	bl	0x7700 <printf@plt>
+    7298: e0 ff ff d0  	adrp	x0, 0x5000 <row2im_cpu_c+0x164>
+    729c: 00 80 25 91  	add	x0, x0, #2400
+;         ree_log(LOG_DEBUG, "%s allocates p_output_img failed", __func__);
+    72a0: 18 01 00 94  	bl	0x7700 <printf@plt>
+;         goto EXIT_ROW2IM_CPU_C;
+    72a4: a1 00 00 14  	b	0x7528 <row2im_cpu_c+0x3fc>
+;     ree_set(p_output_img, 0, sizeof(uint8_t)*in_highs*in_widths*in_channels);
+    72a8: a9 03 5b f8  	ldur	x9, [x29, #-80]
+    72ac: a8 43 5d b8  	ldur	w8, [x29, #-44]
+    72b0: ea 03 08 2a  	mov	w10, w8
+    72b4: 28 00 80 d2  	mov	x8, #1
+    72b8: 08 7d 0a 9b  	mul	x8, x8, x10
+    72bc: aa 03 5d b8  	ldur	w10, [x29, #-48]
+    72c0: 08 7d 0a 9b  	mul	x8, x8, x10
+    72c4: aa c3 5c b8  	ldur	w10, [x29, #-52]
+    72c8: 08 7d 0a 9b  	mul	x8, x8, x10
+    72cc: a9 83 1f f8  	stur	x9, [x29, #-8]
+    72d0: 09 00 80 92  	mov	x9, #-1
+    72d4: a9 03 1f f8  	stur	x9, [x29, #-16]
+    72d8: bf c3 1e b8  	stur	wzr, [x29, #-20]
+    72dc: a8 03 1e f8  	stur	x8, [x29, #-32]
+;     return __builtin_memset(s, c, n);
+    72e0: a0 83 5f f8  	ldur	x0, [x29, #-8]
+    72e4: a8 c3 5e b8  	ldur	w8, [x29, #-20]
+    72e8: a2 03 5e f8  	ldur	x2, [x29, #-32]
+    72ec: 01 1d 00 12  	and	w1, w8, #0xff
+    72f0: 38 01 00 94  	bl	0x77d0 <__asan_memset@plt>
+;     for (int output_channel_ind = 0; output_channel_ind < output_row_channels; output_channel_ind++)
+    72f4: bf c3 18 b8  	stur	wzr, [x29, #-116]
+    72f8: a8 c3 58 b8  	ldur	w8, [x29, #-116]
+    72fc: a9 43 5a b8  	ldur	w9, [x29, #-92]
+    7300: 08 01 09 6b  	subs	w8, w8, w9
+    7304: 83 00 00 54  	b.lo	0x7314 <row2im_cpu_c+0x1e8>
+    7308: a8 00 80 52  	mov	w8, #5
+    730c: e8 7b 00 b9  	str	w8, [sp, #120]
+    7310: 78 00 00 14  	b	0x74f0 <row2im_cpu_c+0x3c4>
+;         width_offset = (output_channel_ind) % kernel_size;
+    7314: a8 c3 58 b8  	ldur	w8, [x29, #-116]
+    7318: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    731c: 09 09 ca 1a  	udiv	w9, w8, w10
+    7320: 29 7d 0a 1b  	mul	w9, w9, w10
+    7324: 08 01 09 6b  	subs	w8, w8, w9
+    7328: a8 c3 19 b8  	stur	w8, [x29, #-100]
+;         high_offset = (output_channel_ind / kernel_size) % kernel_size;
+    732c: a8 c3 58 b8  	ldur	w8, [x29, #-116]
+    7330: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    7334: 08 09 c9 1a  	udiv	w8, w8, w9
+    7338: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    733c: 09 09 ca 1a  	udiv	w9, w8, w10
+    7340: 29 7d 0a 1b  	mul	w9, w9, w10
+    7344: 08 01 09 6b  	subs	w8, w8, w9
+    7348: a8 03 1a b8  	stur	w8, [x29, #-96]
+;         input_channel_ind = output_channel_ind / (kernel_size*kernel_size);
+    734c: a8 c3 58 b8  	ldur	w8, [x29, #-116]
+    7350: a9 83 5c b8  	ldur	w9, [x29, #-56]
+    7354: aa 83 5c b8  	ldur	w10, [x29, #-56]
+    7358: 29 7d 0a 1b  	mul	w9, w9, w10
+    735c: 08 09 c9 1a  	udiv	w8, w8, w9
+    7360: a8 83 19 b8  	stur	w8, [x29, #-104]
+;         for (int output_row_high_ind = 0; output_row_high_ind < output_row_highs; output_row_high_ind++)
+    7364: ff 77 00 b9  	str	wzr, [sp, #116]
+    7368: e8 77 40 b9  	ldr	w8, [sp, #116]
+    736c: a9 c3 5a b8  	ldur	w9, [x29, #-84]
+    7370: 08 01 09 6b  	subs	w8, w8, w9
+    7374: 83 00 00 54  	b.lo	0x7384 <row2im_cpu_c+0x258>
+    7378: 08 01 80 52  	mov	w8, #8
+    737c: e8 7b 00 b9  	str	w8, [sp, #120]
+    7380: 58 00 00 14  	b	0x74e0 <row2im_cpu_c+0x3b4>
+;             for (int output_row_width_ind  = 0; output_row_width_ind < output_row_widths; output_row_width_ind++)
+    7384: ff 73 00 b9  	str	wzr, [sp, #112]
+    7388: e8 73 40 b9  	ldr	w8, [sp, #112]
+    738c: a9 83 5a b8  	ldur	w9, [x29, #-88]
+    7390: 08 01 09 6b  	subs	w8, w8, w9
+    7394: 83 00 00 54  	b.lo	0x73a4 <row2im_cpu_c+0x278>
+    7398: 68 01 80 52  	mov	w8, #11
+    739c: e8 7b 00 b9  	str	w8, [sp, #120]
+    73a0: 4c 00 00 14  	b	0x74d0 <row2im_cpu_c+0x3a4>
+;                row_data_ind = output_channel_ind + (output_row_width_ind + output_row_high_ind * output_row_widths)*output_row_highs;
+    73a4: a8 c3 58 b8  	ldur	w8, [x29, #-116]
+    73a8: e9 73 40 b9  	ldr	w9, [sp, #112]
+    73ac: ea 77 40 b9  	ldr	w10, [sp, #116]
+    73b0: ab 83 5a b8  	ldur	w11, [x29, #-88]
+    73b4: 4a 7d 0b 1b  	mul	w10, w10, w11
+    73b8: 29 01 0a 0b  	add	w9, w9, w10
+    73bc: aa c3 5a b8  	ldur	w10, [x29, #-84]
+    73c0: 29 7d 0a 1b  	mul	w9, w9, w10
+    73c4: 08 01 09 0b  	add	w8, w8, w9
+    73c8: a8 43 19 b8  	stur	w8, [x29, #-108]
+;                output_img_ind = row2im_get_im_ind(in_highs, in_widths,
+    73cc: a0 43 5d b8  	ldur	w0, [x29, #-44]
+    73d0: a1 03 5d b8  	ldur	w1, [x29, #-48]
+;                                                   high_offset + output_row_high_ind*stride,
+    73d4: a8 03 5a b8  	ldur	w8, [x29, #-96]
+    73d8: e9 77 40 b9  	ldr	w9, [sp, #116]
+    73dc: aa 43 5c b8  	ldur	w10, [x29, #-60]
+    73e0: 29 7d 0a 1b  	mul	w9, w9, w10
+    73e4: 02 01 09 0b  	add	w2, w8, w9
+;                                                   width_offset + output_row_width_ind*stride,
+    73e8: a8 c3 59 b8  	ldur	w8, [x29, #-100]
+    73ec: e9 73 40 b9  	ldr	w9, [sp, #112]
+    73f0: aa 43 5c b8  	ldur	w10, [x29, #-60]
+    73f4: 29 7d 0a 1b  	mul	w9, w9, w10
+    73f8: 03 01 09 0b  	add	w3, w8, w9
+;                                                   input_channel_ind,
+    73fc: a4 83 59 b8  	ldur	w4, [x29, #-104]
+;                                                   padding);
+    7400: a5 03 5c b8  	ldur	w5, [x29, #-64]
+;                output_img_ind = row2im_get_im_ind(in_highs, in_widths,
+    7404: 4c 00 00 94  	bl	0x7534 <row2im_get_im_ind>
+    7408: a0 03 19 b8  	stur	w0, [x29, #-112]
+;                if (output_img_ind!=IM2ROW_INVALID_IM_IND)
+    740c: a8 03 59 b8  	ldur	w8, [x29, #-112]
+    7410: 08 9d 0f 31  	adds	w8, w8, #999
+    7414: 60 05 00 54  	b.eq	0x74c0 <row2im_cpu_c+0x394>
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    7418: a8 83 5d f8  	ldur	x8, [x29, #-40]
+    741c: a9 43 59 b8  	ldur	w9, [x29, #-108]
+    7420: 09 01 09 8b  	add	x9, x8, x9
+    7424: e9 1f 00 f9  	str	x9, [sp, #56]
+    7428: e9 23 00 f9  	str	x9, [sp, #64]
+    742c: 08 02 c0 d2  	mov	x8, #68719476736
+    7430: 08 0d 49 8b  	add	x8, x8, x9, lsr #3
+    7434: 08 01 40 39  	ldrb	w8, [x8]
+    7438: e8 4f 00 b9  	str	w8, [sp, #76]
+    743c: 28 01 00 34  	cbz	w8, 0x7460 <row2im_cpu_c+0x334>
+    7440: e9 4f 40 b9  	ldr	w9, [sp, #76]
+    7444: e8 23 40 f9  	ldr	x8, [sp, #64]
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    7448: 08 09 40 92  	and	x8, x8, #0x7
+    744c: 08 1d 00 13  	sxtb	w8, w8
+    7450: 08 81 29 6b  	subs	w8, w8, w9, sxtb
+    7454: 6b 00 00 54  	b.lt	0x7460 <row2im_cpu_c+0x334>
+    7458: e0 23 40 f9  	ldr	x0, [sp, #64]
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    745c: d1 00 00 94  	bl	0x77a0 <__asan_report_load1@plt>
+    7460: e8 1f 40 f9  	ldr	x8, [sp, #56]
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    7464: 08 01 40 39  	ldrb	w8, [x8]
+    7468: e8 1f 00 b9  	str	w8, [sp, #28]
+    746c: a8 03 5b f8  	ldur	x8, [x29, #-80]
+    7470: a9 03 99 b8  	ldursw	x9, [x29, #-112]
+    7474: 09 01 09 8b  	add	x9, x8, x9
+    7478: e9 13 00 f9  	str	x9, [sp, #32]
+    747c: e9 17 00 f9  	str	x9, [sp, #40]
+    7480: 08 02 c0 d2  	mov	x8, #68719476736
+    7484: 08 0d 49 8b  	add	x8, x8, x9, lsr #3
+    7488: 08 01 40 39  	ldrb	w8, [x8]
+    748c: e8 37 00 b9  	str	w8, [sp, #52]
+    7490: 28 01 00 34  	cbz	w8, 0x74b4 <row2im_cpu_c+0x388>
+    7494: e9 37 40 b9  	ldr	w9, [sp, #52]
+    7498: e8 17 40 f9  	ldr	x8, [sp, #40]
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    749c: 08 09 40 92  	and	x8, x8, #0x7
+    74a0: 08 1d 00 13  	sxtb	w8, w8
+    74a4: 08 81 29 6b  	subs	w8, w8, w9, sxtb
+    74a8: 6b 00 00 54  	b.lt	0x74b4 <row2im_cpu_c+0x388>
+    74ac: e0 17 40 f9  	ldr	x0, [sp, #40]
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    74b0: b4 00 00 94  	bl	0x7780 <__asan_report_store1@plt>
+    74b4: e8 1f 40 b9  	ldr	w8, [sp, #28]
+    74b8: e9 13 40 f9  	ldr	x9, [sp, #32]
+;                     p_output_img[output_img_ind] = in_row_data[row_data_ind]; 
+    74bc: 28 01 00 39  	strb	w8, [x9]
+;             for (int output_row_width_ind  = 0; output_row_width_ind < output_row_widths; output_row_width_ind++)
+    74c0: e8 73 40 b9  	ldr	w8, [sp, #112]
+    74c4: 08 05 00 11  	add	w8, w8, #1
+    74c8: e8 73 00 b9  	str	w8, [sp, #112]
+    74cc: af ff ff 17  	b	0x7388 <row2im_cpu_c+0x25c>
+;         for (int output_row_high_ind = 0; output_row_high_ind < output_row_highs; output_row_high_ind++)
+    74d0: e8 77 40 b9  	ldr	w8, [sp, #116]
+    74d4: 08 05 00 11  	add	w8, w8, #1
+    74d8: e8 77 00 b9  	str	w8, [sp, #116]
+    74dc: a3 ff ff 17  	b	0x7368 <row2im_cpu_c+0x23c>
+;     for (int output_channel_ind = 0; output_channel_ind < output_row_channels; output_channel_ind++)
+    74e0: a8 c3 58 b8  	ldur	w8, [x29, #-116]
+    74e4: 08 05 00 11  	add	w8, w8, #1
+    74e8: a8 c3 18 b8  	stur	w8, [x29, #-116]
+    74ec: 83 ff ff 17  	b	0x72f8 <row2im_cpu_c+0x1cc>
+;     *pp_output_img = p_output_img;
+    74f0: a8 03 5b f8  	ldur	x8, [x29, #-80]
+    74f4: e8 03 00 f9  	str	x8, [sp]
+    74f8: a9 83 5b f8  	ldur	x9, [x29, #-72]
+    74fc: e9 07 00 f9  	str	x9, [sp, #8]
+    7500: e9 0b 00 f9  	str	x9, [sp, #16]
+    7504: 08 02 c0 d2  	mov	x8, #68719476736
+    7508: 08 0d 49 8b  	add	x8, x8, x9, lsr #3
+    750c: 08 01 40 39  	ldrb	w8, [x8]
+    7510: 68 00 00 34  	cbz	w8, 0x751c <row2im_cpu_c+0x3f0>
+    7514: e0 0b 40 f9  	ldr	x0, [sp, #16]
+;     *pp_output_img = p_output_img;
+    7518: 92 00 00 94  	bl	0x7760 <__asan_report_store8@plt>
+    751c: e8 03 40 f9  	ldr	x8, [sp]
+    7520: e9 07 40 f9  	ldr	x9, [sp, #8]
+;     *pp_output_img = p_output_img;
+    7524: 28 01 00 f9  	str	x8, [x9]
+; }
+    7528: fd 7b 4f a9  	ldp	x29, x30, [sp, #240]
+    752c: ff 03 04 91  	add	sp, sp, #256
+    7530: c0 03 5f d6  	ret
+
+0000000000007534 <row2im_get_im_ind>:
+; {
+    7534: ff c3 00 d1  	sub	sp, sp, #48
+    7538: e0 2f 00 b9  	str	w0, [sp, #44]
+    753c: e1 2b 00 b9  	str	w1, [sp, #40]
+    7540: e2 27 00 b9  	str	w2, [sp, #36]
+    7544: e3 23 00 b9  	str	w3, [sp, #32]
+    7548: e4 1f 00 b9  	str	w4, [sp, #28]
+    754c: e5 1b 00 b9  	str	w5, [sp, #24]
+;     int im_ind = 0;
+    7550: ff 17 00 b9  	str	wzr, [sp, #20]
+;     int row_data_high_wo_padding = 0, row_data_width_wo_padding = 0;
+    7554: ff 13 00 b9  	str	wzr, [sp, #16]
+    7558: ff 0f 00 b9  	str	wzr, [sp, #12]
+;     row_data_high_wo_padding = row_data_high - padding;
+    755c: e8 27 40 b9  	ldr	w8, [sp, #36]
+    7560: e9 1b 40 b9  	ldr	w9, [sp, #24]
+    7564: 08 01 09 6b  	subs	w8, w8, w9
+    7568: e8 13 00 b9  	str	w8, [sp, #16]
+;     row_data_width_wo_padding = row_data_width - padding;
+    756c: e8 23 40 b9  	ldr	w8, [sp, #32]
+    7570: e9 1b 40 b9  	ldr	w9, [sp, #24]
+    7574: 08 01 09 6b  	subs	w8, w8, w9
+    7578: e8 0f 00 b9  	str	w8, [sp, #12]
+;     if ((row_data_high_wo_padding<0) ||
+    757c: e8 13 40 b9  	ldr	w8, [sp, #16]
+    7580: 68 01 f8 37  	tbnz	w8, #31, 0x75ac <row2im_get_im_ind+0x78>
+;         (row_data_width_wo_padding<0) || 
+    7584: e8 0f 40 b9  	ldr	w8, [sp, #12]
+    7588: 28 01 f8 37  	tbnz	w8, #31, 0x75ac <row2im_get_im_ind+0x78>
+;         (row_data_high_wo_padding>=in_highs) ||
+    758c: e8 13 40 b9  	ldr	w8, [sp, #16]
+    7590: e9 2f 40 b9  	ldr	w9, [sp, #44]
+    7594: 08 01 09 6b  	subs	w8, w8, w9
+    7598: aa 00 00 54  	b.ge	0x75ac <row2im_get_im_ind+0x78>
+;         (row_data_width_wo_padding>=in_widths))
+    759c: e8 0f 40 b9  	ldr	w8, [sp, #12]
+    75a0: e9 2b 40 b9  	ldr	w9, [sp, #40]
+;     if ((row_data_high_wo_padding<0) ||
+    75a4: 08 01 09 6b  	subs	w8, w8, w9
+    75a8: 8b 00 00 54  	b.lt	0x75b8 <row2im_get_im_ind+0x84>
+    75ac: c8 7c 80 12  	mov	w8, #-999
+;         im_ind = IM2ROW_INVALID_IM_IND;
+    75b0: e8 17 00 b9  	str	w8, [sp, #20]
+;     }
+    75b4: 0b 00 00 14  	b	0x75e0 <row2im_get_im_ind+0xac>
+;         im_ind = (input_channel_ind*in_highs + row_data_high_wo_padding)*in_widths + row_data_width_wo_padding;
+    75b8: e8 1f 40 b9  	ldr	w8, [sp, #28]
+    75bc: e9 2f 40 b9  	ldr	w9, [sp, #44]
+    75c0: 08 7d 09 1b  	mul	w8, w8, w9
+    75c4: e9 13 40 b9  	ldr	w9, [sp, #16]
+    75c8: 08 01 09 0b  	add	w8, w8, w9
+    75cc: e9 2b 40 b9  	ldr	w9, [sp, #40]
+    75d0: 08 7d 09 1b  	mul	w8, w8, w9
+    75d4: e9 0f 40 b9  	ldr	w9, [sp, #12]
+    75d8: 08 01 09 0b  	add	w8, w8, w9
+    75dc: e8 17 00 b9  	str	w8, [sp, #20]
+;     return im_ind;
+    75e0: e0 17 40 b9  	ldr	w0, [sp, #20]
+    75e4: ff c3 00 91  	add	sp, sp, #48
+    75e8: c0 03 5f d6  	ret
+
+00000000000075ec <asan.module_ctor>:
+    75ec: ff 83 00 d1  	sub	sp, sp, #32
+    75f0: fe 0b 00 f9  	str	x30, [sp, #16]
+    75f4: 28 00 00 90  	adrp	x8, 0xb000 <asan.module_ctor+0x18>
+    75f8: 08 c1 1e 91  	add	x8, x8, #1968
+    75fc: e8 07 00 f9  	str	x8, [sp, #8]
+    7600: 44 00 00 94  	bl	0x7710 <__asan_init@plt>
+    7604: 47 00 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    7608: e0 07 40 f9  	ldr	x0, [sp, #8]
+    760c: e8 00 80 52  	mov	w8, #7
+    7610: e1 03 08 2a  	mov	w1, w8
+    7614: 47 00 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    7618: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    761c: ff 83 00 91  	add	sp, sp, #32
+    7620: c0 03 5f d6  	ret
+
+0000000000007624 <asan.module_dtor>:
+    7624: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    7628: 20 00 00 90  	adrp	x0, 0xb000 <asan.module_dtor+0x14>
+    762c: 00 c0 1e 91  	add	x0, x0, #1968
+    7630: e8 00 80 52  	mov	w8, #7
+    7634: e1 03 08 2a  	mov	w1, w8
+    7638: 42 00 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    763c: fe 07 41 f8  	ldr	x30, [sp], #16
+    7640: c0 03 5f d6  	ret
+
+0000000000007644 <asan.module_ctor>:
+    7644: ff 83 00 d1  	sub	sp, sp, #32
+    7648: fe 0b 00 f9  	str	x30, [sp, #16]
+    764c: 28 00 00 90  	adrp	x8, 0xb000 <asan.module_ctor+0x18>
+    7650: 08 c1 25 91  	add	x8, x8, #2416
+    7654: e8 07 00 f9  	str	x8, [sp, #8]
+    7658: 2e 00 00 94  	bl	0x7710 <__asan_init@plt>
+    765c: 31 00 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    7660: e0 07 40 f9  	ldr	x0, [sp, #8]
+    7664: 08 02 80 52  	mov	w8, #16
+    7668: e1 03 08 2a  	mov	w1, w8
+    766c: 31 00 00 94  	bl	0x7730 <__asan_register_globals@plt>
+    7670: fe 0b 40 f9  	ldr	x30, [sp, #16]
+    7674: ff 83 00 91  	add	sp, sp, #32
+    7678: c0 03 5f d6  	ret
+
+000000000000767c <asan.module_dtor>:
+    767c: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    7680: 20 00 00 90  	adrp	x0, 0xb000 <asan.module_dtor+0x14>
+    7684: 00 c0 25 91  	add	x0, x0, #2416
+    7688: 08 02 80 52  	mov	w8, #16
+    768c: e1 03 08 2a  	mov	w1, w8
+    7690: 2c 00 00 94  	bl	0x7740 <__asan_unregister_globals@plt>
+    7694: fe 07 41 f8  	ldr	x30, [sp], #16
+    7698: c0 03 5f d6  	ret
+
+000000000000769c <asan.module_ctor>:
+    769c: fe 0f 1f f8  	str	x30, [sp, #-16]!
+    76a0: 1c 00 00 94  	bl	0x7710 <__asan_init@plt>
+    76a4: 1f 00 00 94  	bl	0x7720 <__asan_version_mismatch_check_v8@plt>
+    76a8: fe 07 41 f8  	ldr	x30, [sp], #16
+    76ac: c0 03 5f d6  	ret
+
+Disassembly of section .plt:
+
+00000000000076b0 <.plt>:
+    76b0: f0 7b bf a9  	stp	x16, x30, [sp, #-16]!
+    76b4: 10 00 00 d0  	adrp	x16, 0x9000 <.plt+0xc>
+    76b8: 11 ce 40 f9  	ldr	x17, [x16, #408]
+    76bc: 10 62 06 91  	add	x16, x16, #408
+    76c0: 20 02 1f d6  	br	x17
+    76c4: 1f 20 03 d5  	nop
+    76c8: 1f 20 03 d5  	nop
+    76cc: 1f 20 03 d5  	nop
+
+00000000000076d0 <__libc_init@plt>:
+    76d0: 10 00 00 d0  	adrp	x16, 0x9000 <__libc_init@plt+0x8>
+    76d4: 11 d2 40 f9  	ldr	x17, [x16, #416]
+    76d8: 10 82 06 91  	add	x16, x16, #416
+    76dc: 20 02 1f d6  	br	x17
+
+00000000000076e0 <__cxa_atexit@plt>:
+    76e0: 10 00 00 d0  	adrp	x16, 0x9000 <__cxa_atexit@plt+0x8>
+    76e4: 11 d6 40 f9  	ldr	x17, [x16, #424]
+    76e8: 10 a2 06 91  	add	x16, x16, #424
+    76ec: 20 02 1f d6  	br	x17
+
+00000000000076f0 <__android_log_print@plt>:
+    76f0: 10 00 00 d0  	adrp	x16, 0x9000 <__android_log_print@plt+0x8>
+    76f4: 11 da 40 f9  	ldr	x17, [x16, #432]
+    76f8: 10 c2 06 91  	add	x16, x16, #432
+    76fc: 20 02 1f d6  	br	x17
+
+0000000000007700 <printf@plt>:
+    7700: 10 00 00 d0  	adrp	x16, 0x9000 <printf@plt+0x8>
+    7704: 11 de 40 f9  	ldr	x17, [x16, #440]
+    7708: 10 e2 06 91  	add	x16, x16, #440
+    770c: 20 02 1f d6  	br	x17
+
+0000000000007710 <__asan_init@plt>:
+    7710: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_init@plt+0x8>
+    7714: 11 e2 40 f9  	ldr	x17, [x16, #448]
+    7718: 10 02 07 91  	add	x16, x16, #448
+    771c: 20 02 1f d6  	br	x17
+
+0000000000007720 <__asan_version_mismatch_check_v8@plt>:
+    7720: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_version_mismatch_check_v8@plt+0x8>
+    7724: 11 e6 40 f9  	ldr	x17, [x16, #456]
+    7728: 10 22 07 91  	add	x16, x16, #456
+    772c: 20 02 1f d6  	br	x17
+
+0000000000007730 <__asan_register_globals@plt>:
+    7730: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_register_globals@plt+0x8>
+    7734: 11 ea 40 f9  	ldr	x17, [x16, #464]
+    7738: 10 42 07 91  	add	x16, x16, #464
+    773c: 20 02 1f d6  	br	x17
+
+0000000000007740 <__asan_unregister_globals@plt>:
+    7740: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_unregister_globals@plt+0x8>
+    7744: 11 ee 40 f9  	ldr	x17, [x16, #472]
+    7748: 10 62 07 91  	add	x16, x16, #472
+    774c: 20 02 1f d6  	br	x17
+
+0000000000007750 <__asan_stack_malloc_1@plt>:
+    7750: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_stack_malloc_1@plt+0x8>
+    7754: 11 f2 40 f9  	ldr	x17, [x16, #480]
+    7758: 10 82 07 91  	add	x16, x16, #480
+    775c: 20 02 1f d6  	br	x17
+
+0000000000007760 <__asan_report_store8@plt>:
+    7760: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_report_store8@plt+0x8>
+    7764: 11 f6 40 f9  	ldr	x17, [x16, #488]
+    7768: 10 a2 07 91  	add	x16, x16, #488
+    776c: 20 02 1f d6  	br	x17
+
+0000000000007770 <malloc@plt>:
+    7770: 10 00 00 d0  	adrp	x16, 0x9000 <malloc@plt+0x8>
+    7774: 11 fa 40 f9  	ldr	x17, [x16, #496]
+    7778: 10 c2 07 91  	add	x16, x16, #496
+    777c: 20 02 1f d6  	br	x17
+
+0000000000007780 <__asan_report_store1@plt>:
+    7780: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_report_store1@plt+0x8>
+    7784: 11 fe 40 f9  	ldr	x17, [x16, #504]
+    7788: 10 e2 07 91  	add	x16, x16, #504
+    778c: 20 02 1f d6  	br	x17
+
+0000000000007790 <__asan_report_load8@plt>:
+    7790: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_report_load8@plt+0x8>
+    7794: 11 02 41 f9  	ldr	x17, [x16, #512]
+    7798: 10 02 08 91  	add	x16, x16, #512
+    779c: 20 02 1f d6  	br	x17
+
+00000000000077a0 <__asan_report_load1@plt>:
+    77a0: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_report_load1@plt+0x8>
+    77a4: 11 06 41 f9  	ldr	x17, [x16, #520]
+    77a8: 10 22 08 91  	add	x16, x16, #520
+    77ac: 20 02 1f d6  	br	x17
+
+00000000000077b0 <free@plt>:
+    77b0: 10 00 00 d0  	adrp	x16, 0x9000 <free@plt+0x8>
+    77b4: 11 0a 41 f9  	ldr	x17, [x16, #528]
+    77b8: 10 42 08 91  	add	x16, x16, #528
+    77bc: 20 02 1f d6  	br	x17
+
+00000000000077c0 <__stack_chk_fail@plt>:
+    77c0: 10 00 00 d0  	adrp	x16, 0x9000 <__stack_chk_fail@plt+0x8>
+    77c4: 11 0e 41 f9  	ldr	x17, [x16, #536]
+    77c8: 10 62 08 91  	add	x16, x16, #536
+    77cc: 20 02 1f d6  	br	x17
+
+00000000000077d0 <__asan_memset@plt>:
+    77d0: 10 00 00 d0  	adrp	x16, 0x9000 <__asan_memset@plt+0x8>
+    77d4: 11 12 41 f9  	ldr	x17, [x16, #544]
+    77d8: 10 82 08 91  	add	x16, x16, #544
+    77dc: 20 02 1f d6  	br	x17
