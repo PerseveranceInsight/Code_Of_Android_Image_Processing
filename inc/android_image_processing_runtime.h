@@ -26,4 +26,5 @@ void gemm_cpu_c_uint32_runtime(void);
 void gemm_cpu_neon_uint32_runtime(void);
 void gemm_im2row_cpu_c_uint32_runtime(void);
 void gemm_im2row_cpu_neon_uint32_runtime(void);
+void gemm_im2col_cpu_neon_uint32_runtime(void);
 #endif

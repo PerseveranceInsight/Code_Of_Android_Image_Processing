@@ -47,4 +47,5 @@ typedef struct gemm_param_metadata {
 
 void gemm_cpu_c_uint32(gemm_param_metadata_t*);
 void gemm_cpu_neon_uint32(gemm_param_metadata_t*);
+void gemm_cpu_neon_uint32_v2(gemm_param_metadata_t*);
 #endif

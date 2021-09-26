@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "android_arm_util.h"
 #include "android_image_processing_im2col.h"
@@ -89,4 +91,89 @@ void im2col_cpu_uint8_t(uint8_t const *in_img,
         }
     }
     FUNC_EXIT_LOG;
+}
+
+void im2col_cpu_uint32_t(im2col_param_metadata_t *p_im2col_params)
+{
+    IM2COL_FUNC_ENTRANCE_LOG;
+    int in_channels = p_im2col_params->in_channels;
+    int in_heights = p_im2col_params->in_heights;
+    int in_widths = p_im2col_params->in_widths;
+    int in_kernel_sizes = p_im2col_params->in_kernel_sizes;
+    int in_pad_sizes = p_im2col_params->in_pad_sizes;
+    int in_stride_sizes = p_im2col_params->in_stride_sizes;
+    int row_ind  = 0;
+    int out_img_heights = 0, out_img_widths = 0, out_mat_heights = 0, out_mat_widths = 0;
+    int out_mat_heights_offset = 0, out_mat_widths_offset = 0, out_mat_channels_offset = 0;
+    int out_ele_num = 0;
+    int pack_widths = p_im2col_params->pack_widths;
+    int out_pack_heights = p_im2col_params->out_pack_heights;
+    uint32_t *in_img = NULL;
+    uint32_t *col_features = NULL;
+    im2col_subparam_metadata_t subparam = {0};
+
+    if (!p_im2col_params)
+    {
+        ree_log(LOG_ERROR, "%s occurs error due to p_im2col_params is NULL", __func__);
+        goto EXIT_IM2COL_CPU_UINT32;
+    }
+    
+    in_img = (uint32_t*)p_im2col_params->in_img;
+    if (!in_img)
+    {
+        ree_log(LOG_ERROR, "%s occurs error due to in_img is NULL", __func__);
+        goto EXIT_IM2COL_CPU_UINT32;
+    }
+    out_img_widths = (in_widths+2*in_pad_sizes - in_kernel_sizes)/in_stride_sizes + 1;
+    out_img_heights = (in_heights+2*in_pad_sizes - in_kernel_sizes)/in_stride_sizes + 1;
+    out_mat_widths = out_img_widths * out_img_heights;
+    out_mat_heights = in_kernel_sizes*in_kernel_sizes*in_channels;
+
+    out_ele_num = out_mat_widths*out_mat_heights;
+    ree_log(LOG_DEBUG, "%s out_img_widths %d", __func__, out_img_widths);
+    ree_log(LOG_DEBUG, "%s out_img_heights %d", __func__, out_img_heights);
+    ree_log(LOG_DEBUG, "%s out_mat_widths %d", __func__, out_mat_widths);
+    ree_log(LOG_DEBUG, "%s out_mat_heights %d", __func__, out_mat_heights);
+    ree_log(LOG_DEBUG, "%s out_ele_num %d", __func__, out_ele_num);
+
+    col_features = (uint32_t*)ree_malloc(out_ele_num*sizeof(uint32_t));
+    if (!col_features)
+    {
+        ree_log(LOG_ERROR, "%s allocates col_features error", __func__);
+        goto EXIT_IM2COL_CPU_UINT32;
+    }
+    ree_set(col_features, 0, sizeof(uint32_t)*out_ele_num);
+
+    subparam.in_img = (uint8_t*)in_img;
+    subparam.in_heights = in_heights;
+    subparam.in_widths = in_widths;
+    subparam.in_padding = in_pad_sizes;
+
+    for (int out_mat_row = 0; out_mat_row<out_mat_heights; out_mat_row++)
+    {
+        out_mat_widths_offset = out_mat_row % in_kernel_sizes;
+        out_mat_heights_offset = (out_mat_row/in_kernel_sizes)%in_kernel_sizes;
+        out_mat_channels_offset = (out_mat_row/in_kernel_sizes)/in_kernel_sizes;
+        subparam.in_channel_ind = out_mat_channels_offset;
+        for (int out_img_height = 0; out_img_height<out_img_heights; out_img_height++)
+        {
+            for (int out_img_width = 0; out_img_width<out_img_widths; out_img_width++)
+            {
+                subparam.col_data_col_ind = out_mat_widths_offset + out_img_width*in_stride_sizes;
+                subparam.col_data_row_ind = out_mat_heights_offset + out_img_height*in_stride_sizes;
+                row_ind = out_mat_row*out_mat_widths + out_img_height*out_img_widths + out_img_width;
+                // ree_log(LOG_DEBUG, "%d", row_ind);
+                col_features[row_ind] = im2col_get_pixel_uint32_t(&subparam);
+            }
+        }
+    }
+
+    p_im2col_params->out_img_heights = out_img_heights;
+    p_im2col_params->out_img_widths = out_img_widths;
+    p_im2col_params->out_mat_heights = out_mat_heights;
+    p_im2col_params->out_mat_widths = out_mat_widths;
+    p_im2col_params->out_ele_num = out_ele_num;
+    p_im2col_params->col_features = (uint8_t*)col_features;
+EXIT_IM2COL_CPU_UINT32:
+    IM2COL_FUNC_EXIT_LOG;
 }

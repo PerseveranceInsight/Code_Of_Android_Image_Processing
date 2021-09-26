@@ -28,6 +28,7 @@ LOCAL_SRC_FILES += $(PROJECT_SRC)/android_image_processing_main.c \
 				   $(PROJECT_SRC)/android_image_processing_im2col.c \
 				   $(PROJECT_SRC)/android_image_processing_im2row.c \
 				   $(PROJECT_SRC)/android_image_processing_gemm.c \
+				   $(PROJECT_SRC)/android_image_processing_pack.c \
 				   $(PROJECT_UTIL_SRC)/android_arm_util.c 
 
 LOCAL_LDLIBS := -lm -llog

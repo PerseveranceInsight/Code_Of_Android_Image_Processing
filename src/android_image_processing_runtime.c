@@ -8,6 +8,7 @@
 #include "android_image_processing_im2col.h"
 #include "android_image_processing_im2row.h"
 #include "android_image_processing_gemm.h"
+#include "android_image_processing_pack.h"
 
 void hist_eq_runtime_c(void)
 {
@@ -517,7 +518,7 @@ void gemm_im2row_cpu_c_uint32_runtime(void)
     uint32_t *p_input_img_row = NULL;
     uint32_t *p_input_filters = NULL;
     uint32_t *p_output_row_features = NULL;
-    unsigned int input_heights = 7, input_widths = 7, input_channels = 1;
+    unsigned int input_heights = 200, input_widths = 200, input_channels = 1;
     unsigned int input_ele_num = input_heights*input_widths*input_channels;
     unsigned int kernel_size = 3, kernel_num = 3;
     unsigned int output_heights = 0, output_widths = 0;
@@ -625,14 +626,14 @@ void gemm_im2row_cpu_c_uint32_runtime(void)
 
     gemm_cpu_c_uint32(&gemm_param);
 
-    for (int m_ind = 0; m_ind<gemm_param.m_dims; m_ind++)
-    {
-        for (int n_ind = 0; n_ind<gemm_param.n_dims; n_ind++)
-        {
-            printf("%4d ", *((uint32_t*)p_output_row_features+m_ind*gemm_param.n_dims+n_ind));
-        }
-        printf("\n");
-    }
+    // for (int m_ind = 0; m_ind<gemm_param.m_dims; m_ind++)
+    // {
+    //     for (int n_ind = 0; n_ind<gemm_param.n_dims; n_ind++)
+    //     {
+    //         printf("%4d ", *((uint32_t*)p_output_row_features+m_ind*gemm_param.n_dims+n_ind));
+    //     }
+    //     printf("\n");
+    // }
 
 EXIT_GEMM_CPU_C_RUNTIME:
     ree_free(p_input_img);
@@ -642,7 +643,6 @@ EXIT_GEMM_CPU_C_RUNTIME:
     FUNC_EXIT_LOG;
 }
 
-
 void gemm_im2row_cpu_neon_uint32_runtime(void)
 {
     FUNC_ENTRANCE_LOG;
@@ -650,7 +650,7 @@ void gemm_im2row_cpu_neon_uint32_runtime(void)
     uint32_t *p_input_img_row = NULL;
     uint32_t *p_input_filters = NULL;
     uint32_t *p_output_row_features = NULL;
-    unsigned int input_heights = 7, input_widths = 7, input_channels = 1;
+    unsigned int input_heights = 200, input_widths = 200, input_channels = 1;
     unsigned int input_ele_num = input_heights*input_widths*input_channels;
     unsigned int kernel_size = 3, kernel_num = 3;
     unsigned int output_heights = 0, output_widths = 0;
@@ -740,7 +740,7 @@ void gemm_im2row_cpu_neon_uint32_runtime(void)
 
     if (!p_output_row_features)
     {
-        ree_log(LOG_DEBUG, "%s allocates p_output_row_features failed", __func__);
+        ree_log(LOG_ERROR, "%s allocates p_output_row_features failed", __func__);
         goto EXIT_GEMM_CPU_NEON_RUNTIME; 
     }
     ree_set(p_output_row_features, 0, sizeof(uint32_t)*output_heights*output_widths*kernel_num);
@@ -758,14 +758,14 @@ void gemm_im2row_cpu_neon_uint32_runtime(void)
 
     gemm_cpu_neon_uint32(&gemm_param);
 
-    for (int m_ind = 0; m_ind<gemm_param.m_dims; m_ind++)
-    {
-        for (int n_ind = 0; n_ind<gemm_param.n_dims; n_ind++)
-        {
-            printf("%4d ", *((uint32_t*)p_output_row_features+m_ind*gemm_param.n_dims+n_ind));
-        }
-        printf("\n");
-    }
+    // for (int m_ind = 0; m_ind<gemm_param.m_dims; m_ind++)
+    // {
+    //     for (int n_ind = 0; n_ind<gemm_param.n_dims; n_ind++)
+    //     {
+    //         printf("%4d ", *((uint32_t*)p_output_row_features+m_ind*gemm_param.n_dims+n_ind));
+    //     }
+    //     printf("\n");
+    // }
 
 EXIT_GEMM_CPU_NEON_RUNTIME:
     ree_free(p_input_img);
@@ -774,3 +774,178 @@ EXIT_GEMM_CPU_NEON_RUNTIME:
     ree_free(p_output_row_features);
     FUNC_EXIT_LOG;
 }
+
+void gemm_im2col_cpu_neon_uint32_runtime(void)
+{
+    FUNC_ENTRANCE_LOG;
+    uint32_t *p_input_img = NULL;
+    uint32_t *p_input_filters = NULL;
+    unsigned int input_heights = 7, input_widths = 7, input_channels = 1;
+    unsigned int input_ele_num = input_heights*input_widths*input_channels;
+    unsigned int kernel_size = 3, kernel_num = 3;
+    unsigned int output_heights = 0, output_widths = 0;
+    unsigned int m_steps = 0, n_steps = 0;
+    unsigned int padding = 1, stride = 1;
+    unsigned int out_aux_c_ele_num = 0;
+    unsigned int pack_heights = 4, pack_widths = 4;
+    size_t in_file_size = 0, in_r_file_size = 0;
+    size_t out_file_size = 0, out_w_file_size = 0;
+    FILE *input_img_file = NULL;
+    FILE *input_kernels_file = NULL;
+    FILE *output_features_file = NULL;
+    im2col_param_metadata_t im2col_param = {0};
+    gemm_param_metadata_t gemm_param = {0};
+
+    output_heights = (input_heights+2*padding-kernel_size)/stride + 1;
+    output_widths = (input_widths+2*padding-kernel_size)/stride + 1;
+    ree_log(LOG_DEBUG, "%s output_heights %d output_widths %d", __func__,
+                                                                output_heights,
+                                                                output_widths);
+
+    ree_check_fopen(input_img_file,
+                    GEMM_CPU_TEST_INPUT_BIN,
+                    "rb",
+                    EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME);
+    ree_file_size(in_file_size,
+                  input_img_file);
+    
+    if (in_file_size != (sizeof(uint32_t)*input_channels*input_widths*input_heights))
+    {
+        ree_log(LOG_ERROR, "%s occurs error when readding %s", __func__, GEMM_CPU_TEST_INPUT_BIN);
+        goto EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME;
+    }
+    ree_fclose(input_img_file);
+
+    p_input_img = ree_malloc((int)in_file_size);
+    if (!p_input_img)
+    {
+        ree_log(LOG_ERROR, "%s allocates p_input_img buffer failed", __func__);
+        goto EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME;
+    }
+
+    ree_check_fopen(input_img_file,
+                    GEMM_CPU_TEST_INPUT_BIN,
+                    "rb",
+                    EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME);
+    ree_file_read(input_img_file,
+                  p_input_img,
+                  (int)in_file_size,
+                  in_r_file_size);
+    ree_fclose(input_img_file);
+
+    ree_check_fopen(input_kernels_file,
+                    GEMM_CPU_TEST_FILTERS_BIN,
+                    "rb",
+                    EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME);
+    ree_file_size(in_file_size,
+                  input_kernels_file);
+
+    if (in_file_size != (sizeof(uint32_t)*kernel_size*kernel_size*kernel_num))
+    {
+        ree_log(LOG_ERROR, "%s occurs error when readding %s", __func__, GEMM_CPU_TEST_FILTERS_BIN);
+        goto EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME;
+    }
+    ree_fclose(input_kernels_file);
+
+    p_input_filters = ree_malloc((int)in_file_size);
+    if (!p_input_filters)
+    {
+        ree_log(LOG_ERROR, "%s allocates p_input_filters buffer failed", __func__);
+        goto EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME;
+    }
+
+    ree_check_fopen(input_kernels_file,
+                    GEMM_CPU_TEST_FILTERS_BIN,
+                    "rb",
+                    EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME);
+    ree_file_read(input_kernels_file,
+                  p_input_filters,
+                  (int)in_file_size,
+                  in_r_file_size);
+    ree_fclose(input_kernels_file);
+
+    im2col_param.in_channels = input_channels;
+    im2col_param.in_heights = input_heights;
+    im2col_param.in_widths = input_widths;
+    im2col_param.in_kernel_sizes = kernel_size;
+    im2col_param.in_pad_sizes = padding;
+    im2col_param.in_stride_sizes = stride;
+    im2col_param.pack_widths = pack_widths;
+    im2col_param.kernel_pack_heights = pack_heights;
+    im2col_param.out_pack_heights = pack_heights;
+    im2col_param.in_img = (uint8_t*)p_input_img; 
+    im2col_cpu_uint32_t(&im2col_param);
+
+    for (int m_ind = 0; m_ind<im2col_param.out_mat_heights; m_ind++)
+    {
+        for (int n_ind = 0; n_ind<im2col_param.out_mat_widths; n_ind++)
+        {
+            printf("%d ", *((uint32_t*)im2col_param.col_features+m_ind*im2col_param.out_mat_widths+n_ind));
+        }
+        printf("\n");
+    }
+
+    pack_cpu_neon_uint32_t(p_input_filters,
+                           kernel_num,
+                           kernel_size*kernel_size,
+                           pack_heights,
+                           pack_widths,
+                           (uint32_t**)&gemm_param.mat_a);
+
+    pack_cpu_neon_uint32_t((uint32_t*)im2col_param.col_features,
+                           im2col_param.out_mat_heights,
+                           im2col_param.out_mat_widths,
+                           pack_heights,
+                           pack_widths,
+                           (uint32_t**)&gemm_param.mat_b);
+    // for (int i = 0; i<12; i++)
+    // {
+    //     for (int j = 0; j<pack_widths*13; j++)
+    //     {
+    //         printf("%d ", *((uint32_t*)gemm_param.mat_b + i*52+j));
+    //     }
+    //     printf("\n");
+    // }
+
+    // gemm_param.is_a_tran = FALSE;
+    // gemm_param.is_b_tran = FALSE;
+    // gemm_param.m_dims = kernel_num;
+    // gemm_param.n_dims = output_heights*output_widths;
+    // gemm_param.k_dims = kernel_size*kernel_size;
+    // gemm_param.alpha = 1;
+    // gemm_param.beta = 0;
+    // gemm_param.mat_a = (uint8_t*)p_input_filters;
+    // gemm_param.mat_b = (uint8_t*)im2col_param.col_features;
+
+    // m_steps = gemm_param.m_dims/im2col_param.kernel_pack_heights + 1;
+    // n_steps = gemm_param.n_dims/im2col_param.pack_widths + 1;
+    // out_aux_c_ele_num = m_steps*im2col_param.kernel_pack_heights*n_steps*im2col_param.pack_widths;
+    // ree_log(LOG_DEBUG, "%s out_aux_c_ele_num %d", __func__, out_aux_c_ele_num);
+    // gemm_param.mat_c = ree_malloc(sizeof(uint32_t)*out_aux_c_ele_num);
+    // if (!gemm_param.mat_c)
+    // {
+    //     ree_log(LOG_ERROR, "%s allocates gemm_param.mat_c failed", __func__);
+    //     goto EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME;
+    // }
+    // ree_set(gemm_param.mat_c, 0, sizeof(uint32_t)*out_aux_c_ele_num);
+    // gemm_cpu_neon_uint32_v2(&gemm_param);
+
+    // for (int m_ind = 0; m_ind<gemm_param.m_dims; m_ind++)
+    // {
+    //     for (int n_ind = 0; n_ind<gemm_param.n_dims; n_ind++)
+    //     {
+    //         printf("%4d ", *((uint32_t*)gemm_param.mat_c+m_ind*gemm_param.n_dims+n_ind));
+    //     }
+    //     printf("\n");
+    // }
+
+EXIT_GEMM_IM2COL_CPU_NEON_RUNTIME:
+    ree_free(p_input_img);
+    ree_free(p_input_filters);
+    ree_free(im2col_param.col_features);
+    ree_free(gemm_param.mat_a);
+    ree_free(gemm_param.mat_b);
+    ree_free(gemm_param.mat_c);
+    FUNC_EXIT_LOG;
+}
+
